@@ -8,7 +8,7 @@ const asyncHandler = require('express-async-handler');
 exports.landing = asyncHandler(async (req, res, next) => {
   return res
     .status(200)
-    .render('pages/projected', {
+    .render('pages/protected', {
       success: true,
       title: 'DPM shift tracker'
     });
