@@ -1,34 +1,42 @@
 console.log('app has loaded');
 const forms = Array.from(document.querySelectorAll('.form'));
 
-const fetchData = async ($formAttrs) => {
-  const requestOptions = {
-    method: $formAttrs.method,
+const fetchData = async ($form) => {
+  const attrs = $form.getAttributeNames().reduce((acc, name) => {
+    return {...acc, [name]: $form.getAttribute(name)}
+  }, {});
+
+  const options = {
+    method: attrs.method,
     headers: {
-      'Content-Type': $formAttrs.enctype,
-      'Accept': $formAttrs.enctype
+      'Content-Type': attrs.enctype,
+      'Accept': attrs.enctype
     }
   }
 
-  const response = await fetch($formAttrs.action, requestOptions);
+  const needsBody = attrs.method === 'POST' || attrs.method === 'PUT';
+
+  if(needsBody) {
+    let body = {};
+    let formElements = Array.from($form.elements);
+    formElements.forEach(element => {
+      const property = element.getAttribute('name');
+      const value = $form[property].value;
+      body[property] = value
+    });
+    options.body = JSON.stringify(body);a
+  }
+
+  const response = await fetch(attrs.action, options);
   const json = await response.json();
 
   console.log(json);
 
 }
 
-const handleSubmit = ($form) => {  
-  const attrs = $form.getAttributeNames().reduce((acc, name) => {
-    return {...acc, [name]: $form.getAttribute(name)}
-  }, {});
-
-  fetchData(attrs);
-  
-}
-
 forms.forEach(form => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    handleSubmit(event.target);
+    fetchData(event.target);
   });
 });
