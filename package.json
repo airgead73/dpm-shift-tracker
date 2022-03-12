@@ -4,7 +4,7 @@
   "description": "Application (node, express, ejs, mongodb, auth0) for tracking shifts.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,22 @@
   "bugs": {
     "url": "https://github.com/airgead73/dpm-shift-tracker/issues"
   },
-  "homepage": "https://github.com/airgead73/dpm-shift-tracker#readme"
+  "homepage": "https://github.com/airgead73/dpm-shift-tracker#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-async-handler": "^1.2.0",
+    "express-openid-connect": "^2.7.1",
+    "mongoose": "^6.2.6"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15",
+    "open": "^8.4.0"
+  },
+  "nodemonConfig": {
+    "delay": 2500,
+    "ext": "js,html,ejs,json",
+    "ignore": "client/public/*"
+  }
 }
