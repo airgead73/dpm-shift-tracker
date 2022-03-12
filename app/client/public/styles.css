@@ -1,11 +1,21 @@
 header {
   text-align: center;
+  padding: 10px 20px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 header h1 {
   text-align: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-style: normal;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  color: #212529;
 }
 
 header p {
   text-align: inherit;
+  margin-top: 0;
 }
