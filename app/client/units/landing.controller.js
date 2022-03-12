@@ -7,8 +7,7 @@ const asyncHandler = require('express-async-handler');
 
 exports.landing = asyncHandler(async (req, res, next) => {
 
-  const isUser = true;
-  const viewPath = isUser ? 'pages/protected' : 'pages/public'
+  const viewPath = res.locals.isAuthenticated ? 'pages/protected' : 'pages/public'
 
   return res
     .status(200)

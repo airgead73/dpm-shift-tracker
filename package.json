@@ -4,7 +4,8 @@
   "description": "Application (node, express, ejs, mongodb, auth0) for tracking shifts.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "local": "NODE_ENV=development node -r dotenv/config index.js"
   },
   "repository": {
     "type": "git",
