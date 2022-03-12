@@ -11,6 +11,7 @@ const { auth } = require('express-openid-connect');
 
 const { clientRouter, apiRouter } = require('./routers');
 const { authConfig } = require('./config');
+const { errorHandler } = require('./middleware/errorMiddleware');
 
 /**
  * app activation
@@ -43,6 +44,18 @@ app.set('view engine', 'ejs');
 
 app.use('/', clientRouter);
 app.use('/api', apiRouter);
+
+/**
+ * error handling
+ */
+
+app.use(function(req, res, next) {
+  const error = new Error('Path not found');
+  error.status = 404;
+  next(error);
+});
+
+app.use(errorHandler);
 
 /**
  * export

@@ -19,3 +19,12 @@ header p {
   text-align: inherit;
   margin-top: 0;
 }
+
+form {
+  margin-bottom: 30px;
+}
+
+fieldset {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
