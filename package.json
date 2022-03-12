@@ -1,0 +1,26 @@
+{
+  "name": "dpm-shift-tracker",
+  "version": "1.0.0",
+  "description": "Application (node, express, ejs, mongodb, auth0) for tracking shifts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airgead73/dpm-shift-tracker.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "ejs",
+    "mongodb",
+    "auth0"
+  ],
+  "author": "dan moneypenny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airgead73/dpm-shift-tracker/issues"
+  },
+  "homepage": "https://github.com/airgead73/dpm-shift-tracker#readme"
+}
