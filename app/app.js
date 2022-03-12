@@ -9,7 +9,7 @@ const { auth } = require('express-openid-connect');
  * internal imports
  */
 
-const { clientRouter } = require('./routers');
+const { clientRouter, apiRouter } = require('./routers');
 const { authConfig } = require('./config');
 
 /**
@@ -42,6 +42,7 @@ app.set('view engine', 'ejs');
  */
 
 app.use('/', clientRouter);
+app.use('/api', apiRouter);
 
 /**
  * export

@@ -4,5 +4,57 @@
   <h1>DPM SHIFT TRACKER </h1>
   <p><span><small><a href="/logout">logout</a></small></span></p>
 </header>
+<main>
+  <form 
+    class="form" 
+    id="form_shifts_post" 
+    action="/api/shifts" method="POST" enctype="application/json" 
+    target="/">
+  <fieldset>
+    <legend>post shifts</legend>
+    <button type="submit">POST</button>
+  </fieldset>
+</form>
+<form 
+  class="form" 
+  id="form_shifts_get" 
+  action="/api/shifts" method="GET" enctype="application/json" 
+  target="/">
+  <fieldset>
+  <legend>get shifts</legend>
+  <button type="submit">GET</button>
+  </fieldset>
+</form>
+<form 
+  class="form" 
+  id="form_shifts_detail" 
+  action="/api/shifts/123" method="GET" enctype="application/json" 
+  target="/">
+  <fieldset>
+  <legend>get shift detail</legend>
+  <button type="submit">GET</button>
+  </fieldset>
+</form>
+<form 
+  class="form" 
+  id="form_shifts_update" 
+  action="/api/shifts/123" method="PUT" enctype="application/json" 
+  target="/">
+  <fieldset>
+  <legend>update shift</legend>
+  <button type="submit">PUT</button>
+  </fieldset>
+</form>
+<form 
+  class="form" 
+  id="form_shifts_deletet" 
+  action="/api/shifts/123" method="DELETE" enctype="application/json" 
+  target="/">
+  <fieldset>
+  <legend>delete</legend>
+  <button type="submit">DELETE</button>
+  </fieldset>
+</form>
+</main>
 
 <%- include('../partials/foot') %>

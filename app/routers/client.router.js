@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const clientRouter = Router();
-const { landingRouter } = require('../client/router');
+const { landingRouter } = require('../client/units/landing');
 
 clientRouter.use('/', landingRouter);
 
