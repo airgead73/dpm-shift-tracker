@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const mongoose = require('mongoose');
 const Shift = require('./shift');
 
 /**
@@ -28,9 +29,13 @@ const Shift = require('./shift');
  * */
 
  exports.read = asyncHandler(async (req, res) => { 
+
+  const shifts = await Shift.find({}).sort('date');
+  const currentShift = shifts[0];
   
   res.status(200).json({
-    message: "get shifts"
+    message: "get shifts",
+    current_shift: currentShift
   });
 
 });

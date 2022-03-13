@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const { getShifts } = require('../services');
 
 /**
  * @desc view landing page
@@ -7,7 +8,7 @@ const asyncHandler = require('express-async-handler');
 
 exports.landing = asyncHandler(async (req, res, next) => {
 
-  const viewPath = res.locals.isAuthenticated ? 'pages/protected' : 'pages/public'
+  const viewPath = res.locals.isAuthenticated ? 'pages/protected' : 'pages/public'; 
 
   return res
     .status(200)
