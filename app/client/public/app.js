@@ -14,7 +14,8 @@ const fetchData = async ($form) => {
     }
   }
 
-  const needsBody = attrs.method === 'POST' || attrs.method === 'PUT';
+  // const needsBody = attrs.method === 'POST' || attrs.method === 'PUT';
+  const needsBody = false
 
   if(needsBody) {
     let body = {};
