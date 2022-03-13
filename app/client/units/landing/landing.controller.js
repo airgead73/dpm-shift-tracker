@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
-const { getShifts } = require('../services');
+const format = require('date-fns/format');
+const { getCurrentShift } = require('../services');
 
 /**
  * @desc view landing page
@@ -8,13 +9,24 @@ const { getShifts } = require('../services');
 
 exports.landing = asyncHandler(async (req, res, next) => {
 
-  const viewPath = res.locals.isAuthenticated ? 'pages/protected' : 'pages/public'; 
-
-  return res
+ if(res.locals.isAuthenticated) {
+    const { date, items, rate } = await getCurrentShift();
+    return res
+      .status(200)
+      .render('pages/protected', {
+        success: true,
+        title: 'DPM shift tracker',
+        date: format(date, 'MMMM do yyyy'),
+        items,
+        rate
+      });
+  } else {
+    return res
     .status(200)
-    .render( viewPath, {
+    .render('pages/public', {
       success: true,
       title: 'DPM shift tracker'
     });
+  }
     
 });

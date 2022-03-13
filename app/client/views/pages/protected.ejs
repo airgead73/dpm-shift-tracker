@@ -1,10 +1,15 @@
 <%- include ('../partials/head') %>
 
 <header>
-  <h1>DPM SHIFT TRACKER </h1>
+  <h1>DPM SHIFT TRACKER</h1>
   <p><span><small><a href="/logout">logout</a></small></span></p>
 </header>
 <main>
+  <div>
+    <p><%= date %> </p>
+    <p><%= items %> </p>
+    <p><%= rate %> </p>
+  </div>
   <form 
     class="form" 
     id="form_shifts_post" 

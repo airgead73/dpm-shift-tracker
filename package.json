@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/airgead73/dpm-shift-tracker#readme",
   "dependencies": {
+    "date-fns": "^2.28.0",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "express-async-handler": "^1.2.0",

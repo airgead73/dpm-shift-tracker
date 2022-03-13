@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const mongoose = require('mongoose');
 const Shift = require('./shift');
+const format = require('date-fns/format');
 
 /**
  * @desc Create shift
@@ -13,6 +14,7 @@ const Shift = require('./shift');
   const shift = new Shift(req.body);
 
   await shift.save();
+
   
   res.status(200).json({
     success: true,    
@@ -30,12 +32,15 @@ const Shift = require('./shift');
 
  exports.read = asyncHandler(async (req, res) => { 
 
-  const shifts = await Shift.find({}).sort('date');
-  const currentShift = shifts[0];
+  const shift = await Shift.findOne().sort('-date');
+
+  const { date } = shift;
+  
   
   res.status(200).json({
     message: "get shifts",
-    current_shift: currentShift
+    date: format(date, 'MMMM do yyyy')
+    
   });
 
 });
@@ -47,9 +52,12 @@ const Shift = require('./shift');
  * */
 
  exports.readOne = asyncHandler(async (req, res) => { 
+
+  const shift = await Shift.findOne().sort({ date: -1});
   
   res.status(200).json({
-    message: "get one shift"
+    message: "get one shift",
+    shift
   });
 
 });
