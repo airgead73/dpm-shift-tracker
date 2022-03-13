@@ -12,6 +12,14 @@
     target="/">
   <fieldset>
     <legend>post shifts</legend>
+    <label for="date">
+      date
+      <input type="datetime-local" id="date" name="date">
+    </label>
+    <label for="items">
+      items
+      <input type="number" min="0" max="5000" id="items" name="items">
+    </label>
     <button type="submit">POST</button>
   </fieldset>
 </form>

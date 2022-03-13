@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const Shift = require('./shift');
 
 /**
  * @desc Create shift
@@ -6,11 +7,16 @@ const asyncHandler = require('express-async-handler');
  * @access Private
  * */
 
- exports.create = asyncHandler(async (req, res) => { 
+ exports.create = asyncHandler(async (req, res, next) => { 
+
+  const shift = new Shift(req.body);
+
+  await shift.save();
   
   res.status(200).json({
     success: true,    
-    message: "create shift"
+    message: "create shift",
+    shift
   });
 
 });

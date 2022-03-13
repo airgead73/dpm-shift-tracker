@@ -39,6 +39,6 @@
   "nodemonConfig": {
     "delay": 2500,
     "ext": "js,html,ejs,json",
-    "ignore": "client/public/*"
+    "ignore": "app/client/public/*"
   }
 }

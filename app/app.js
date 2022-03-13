@@ -8,7 +8,7 @@ const { auth } = require('express-openid-connect');
 /**
  * internal imports
  */
- const {/** variables */ isDev, /** configs */ authConfig } = require('./config');
+ const {/** variables */ isDev, /** configs */ authConfig, connectDB } = require('./config');
 const { clientRouter, apiRouter } = require('./routers');
 const { errorHandler } = require('./middleware/errorMiddleware');
 
@@ -18,6 +18,7 @@ const { errorHandler } = require('./middleware/errorMiddleware');
  * app activation
  */
  const app = express();
+ connectDB();
  app.use(auth(authConfig));
 
 /**
