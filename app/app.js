@@ -8,10 +8,11 @@ const { auth } = require('express-openid-connect');
 /**
  * internal imports
  */
-
+ const {/** variables */ isDev, /** configs */ authConfig } = require('./config');
 const { clientRouter, apiRouter } = require('./routers');
-const { authConfig } = require('./config');
 const { errorHandler } = require('./middleware/errorMiddleware');
+
+
 
 /**
  * app activation
@@ -28,6 +29,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'client/views'));
 app.set('view engine', 'ejs');
+
+/**
+ * dev middleware
+ */
+if(isDev) {
+  const logRequests = require('./middleware/logMiddleware');
+  app.use(logRequests);
+}
 
 /**
  * locals

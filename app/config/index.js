@@ -1,3 +1,4 @@
+const { isDev } = require('./env');
 const { issuerBaseUrl, baseUrl, clientId, authSecret } = require('./env.auth');
 const { authConfig } = require('./config.auth');
 
@@ -7,6 +8,7 @@ module.exports = {
   baseUrl, 
   clientId, 
   authSecret,
+  isDev,
   /* config */
   authConfig
 }

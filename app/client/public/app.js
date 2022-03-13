@@ -1,4 +1,3 @@
-console.log('app has loaded');
 const forms = Array.from(document.querySelectorAll('.form'));
 
 const fetchData = async ($form) => {
@@ -40,4 +39,5 @@ forms.forEach(form => {
     event.preventDefault();
     fetchData(event.target);
   });
+  
 });
