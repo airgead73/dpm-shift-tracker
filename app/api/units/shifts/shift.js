@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
+const format = require('date-fns/format');
 
 const shiftSchema = mongoose.Schema({
   date: {
     type: Date,
     required: [true, 'Please, add a date value.'],
     default: Date.now
+  },
+  date_formatted: {
+    type: String
   },
   hours: {
     type: Number,
@@ -20,6 +24,14 @@ const shiftSchema = mongoose.Schema({
   } 
 }, {
   timestamps: true
+});
+
+shiftSchema.pre('save', function(next) {
+
+  this.date_formatted = format(this.date, 'MMMM do yyyy');
+
+  next();
+
 });
 
 shiftSchema.methods.calculateRate = function() {

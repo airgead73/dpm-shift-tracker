@@ -47,11 +47,25 @@
         </fieldset>
       </form>
     </details>
-
-
-
-
-
+    <table>
+      <caption>shift list</caption>
+      <thead>
+        <tr>
+          <th>date</th>
+          <th>items</th>
+          <th>rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% shifts.forEach(shift => { %>
+          <tr>
+            <td><%=  %> </td>
+            <td><%= shift.items %> </td>
+            <td><%= shift.rate %> </td>
+          </tr>
+       <% }) %> 
+      </tbody>
+    </table>
 
   </main>
 
