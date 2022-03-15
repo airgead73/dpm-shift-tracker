@@ -24,7 +24,7 @@ const shiftSchema = mongoose.Schema({
 
 shiftSchema.methods.calculateRate = function() {
 
-  this.rate = this.items / this.hours; 
+  this.rate = Math.round(this.items / this.hours); 
   
   return this.rate;
 
