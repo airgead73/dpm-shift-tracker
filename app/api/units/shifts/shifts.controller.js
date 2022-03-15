@@ -34,8 +34,7 @@ const format = require('date-fns/format');
 
   const shift = await Shift.findOne().sort('-date');
 
-  const { date } = shift;
-  
+  const { date } = shift;  
   
   res.status(200).json({
     message: "get shifts",
@@ -69,9 +68,22 @@ const format = require('date-fns/format');
  * */
 
  exports.update = asyncHandler(async (req, res) => { 
+
+  let shift = await Shift.findById(req.params.id);
+
+  const { items: newItems } = req.body;
+  const { items: oldItems } = shift;
+  const newItemsInteger = parseInt(newItems);
+  const oldItemsInteger = parseInt(oldItems);
+  
+  const newCount = newItemsInteger + oldItemsInteger;
+
+  shift = await Shift.findByIdAndUpdate(req.params.id, { $set: { items: newCount } }, { new: true });
   
   res.status(200).json({
-    message: "update shift"
+    success: true,
+    message: "shift item count updated",
+    new_count: newCount
   });
 
 });
@@ -89,3 +101,26 @@ const format = require('date-fns/format');
   });
 
 });
+
+/**
+ * @desc Update shift
+ * @route GET - /api/shifts/:id/rate
+ * @access Private
+ * */
+
+ exports.setRate = asyncHandler(async (req, res) => { 
+
+  let shift = await Shift.findById(req.params.id);
+  const newRate = shift.calculateRate(); 
+  
+  shift = await Shift.findByIdAndUpdate(req.params.id, { $set: { rate: newRate } }, { new: true });
+  
+  res.status(200).json({
+    success: true,
+    message: "shift rate has been set",
+    rate: shift.rate
+  });
+
+});
+
+

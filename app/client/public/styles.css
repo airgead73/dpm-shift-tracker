@@ -29,3 +29,15 @@ fieldset {
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
+#form_shifts_rate fieldset {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#form_shifts_rate button {
+  display: block;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}

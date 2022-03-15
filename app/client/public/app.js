@@ -23,20 +23,24 @@ const fetchData = async ($form) => {
         return element;
       }
     });
+
     formElements.forEach(element => {
       const property = element.getAttribute('name');
       const value = $form[property].value;
       body[property] = value;
       
-    });   
+    });
+    
     options.body = JSON.stringify(body);
     
   }
 
   const response = await fetch(attrs.action, options);
-  const json = await response.json();
+  const data = await response.json();
+  const { success } = data;
 
-  console.log(json);
+  if(success) window.location.reload();
+  
 
 }
 

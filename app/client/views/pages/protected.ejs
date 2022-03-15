@@ -23,7 +23,7 @@
 <form 
   class="form" 
   id="form_shifts_update" 
-  action="/api/shifts/123" method="PUT" enctype="application/json" 
+  action="/api/shifts/<%= id %>" method="PUT" enctype="application/json" 
   target="/">
   <fieldset>
     <legend>current shift</legend>
@@ -35,6 +35,16 @@
   <legend>add items</legend>
   <input type="number" id="items" name="items">
   <button type="submit">add</button>
+  </fieldset>
+</form>
+
+<form 
+  class="form" 
+  id="form_shifts_rate" 
+  action="/api/shifts/<%= id %>/rate" method="GET" enctype="application/json" 
+  target="/">
+  <fieldset>
+  <button type="submit">calculate rate</button>
   </fieldset>
 </form>
 

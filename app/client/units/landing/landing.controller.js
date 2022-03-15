@@ -10,13 +10,14 @@ const { getCurrentShift } = require('../services');
 exports.landing = asyncHandler(async (req, res, next) => {
 
  if(res.locals.isAuthenticated) {
-    const { date, items, rate } = await getCurrentShift();
+    const { date, items, rate, _id } = await getCurrentShift();
     return res
       .status(200)
       .render('pages/protected', {
         success: true,
         title: 'DPM shift tracker',
         date: format(date, 'MMMM do yyyy'),
+        id: _id,
         items,
         rate
       });

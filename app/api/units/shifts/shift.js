@@ -22,4 +22,12 @@ const shiftSchema = mongoose.Schema({
   timestamps: true
 });
 
+shiftSchema.methods.calculateRate = function() {
+
+  this.rate = this.items / this.hours; 
+  
+  return this.rate;
+
+}
+
 module.exports = mongoose.model('Shift', shiftSchema);
