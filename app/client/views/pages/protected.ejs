@@ -1,57 +1,58 @@
 <%- include ('../partials/head') %>
 
-<header>
-  <h1>DPM SHIFT TRACKER</h1>
-  <p><span><small><a href="/logout">logout</a></small></span></p>
-</header>
-<main>
-  <details>
-    <summary>start new shift</summary>
-    <form 
-    class="form" 
-    id="form_shifts_post" 
-    action="/api/shifts" method="POST" enctype="application/json" 
-    target="/">
-  <fieldset>
-    <legend>start new shift</legend>
-    <label for="date">
-      
-      <input type="datetime-local" id="date" name="date">
-    </label>
-    <button type="submit">start</button>
-  </fieldset>
-</form>    
-  </details>
+  <header>
+    <h1>DPM SHIFT TRACKER</h1>
+    <p><span><small><a href="/logout">logout</a></small></span></p>
+  </header>
+  <main>
+    <details>
+      <summary><b>start new shift</b></summary>
+      <form class="form" id="form_shifts_post" action="/api/shifts" method="POST" enctype="application/json" target="/">
+        <fieldset>
+          <label for="date">
+
+            <input type="datetime-local" id="date" name="date">
+          </label>
+          <button type="submit">start</button>
+        </fieldset>
+      </form>
+    </details>
+
+    <details>
+      <summary><b>current shift</b></summary>
+      <form class="form" id="form_shifts_update" action="/api/shifts/<%= id %>" method="PUT" enctype="application/json"
+        target="/">
+        <fieldset>
+         <p>
+            <%= date %>
+          </p>
+          <p>items: <%= items %>
+          </p>
+          <p>rate: <%= rate %>
+          </p>
+        </fieldset>
+        <fieldset>
+          <legend>add items</legend>
+          <input type="number" id="items" name="items">
+          <button type="submit">add</button>
+        </fieldset>
+      </form>      
+    </details>
+    <details>
+      <summary><b>calculate rate</b></summary>
+      <form class="form" id="form_shifts_rate" action="/api/shifts/<%= id %>/rate" method="GET" enctype="application/json"
+        target="/">
+        <fieldset>
+          <button type="submit">calculate rate</button>
+        </fieldset>
+      </form>
+    </details>
 
 
-<form 
-  class="form" 
-  id="form_shifts_update" 
-  action="/api/shifts/<%= id %>" method="PUT" enctype="application/json" 
-  target="/">
-  <fieldset>
-    <legend>current shift</legend>
-    <p><%= date %> </p>
-    <p>items: <%= items %></p>
-    <p>rate: <%= rate %></p>
-  </fieldset>
-  <fieldset>
-  <legend>add items</legend>
-  <input type="number" id="items" name="items">
-  <button type="submit">add</button>
-  </fieldset>
-</form>
 
-<form 
-  class="form" 
-  id="form_shifts_rate" 
-  action="/api/shifts/<%= id %>/rate" method="GET" enctype="application/json" 
-  target="/">
-  <fieldset>
-  <button type="submit">calculate rate</button>
-  </fieldset>
-</form>
 
-</main>
 
-<%- include('../partials/foot') %>
+
+  </main>
+
+  <%- include('../partials/foot') %>
