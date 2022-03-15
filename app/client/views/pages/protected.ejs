@@ -5,7 +5,9 @@
   <p><span><small><a href="/logout">logout</a></small></span></p>
 </header>
 <main>
-  <form 
+  <details>
+    <summary>start new shift</summary>
+    <form 
     class="form" 
     id="form_shifts_post" 
     action="/api/shifts" method="POST" enctype="application/json" 
@@ -18,7 +20,9 @@
     </label>
     <button type="submit">start</button>
   </fieldset>
-</form>
+</form>    
+  </details>
+
 
 <form 
   class="form" 
