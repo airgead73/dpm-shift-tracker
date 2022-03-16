@@ -10,16 +10,17 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
  if(res.locals.isAuthenticated) {
     const { current, shifts } = await getAllShifts();
+
     return res
       .status(200)
       .render('pages/protected', {
         success: true,
         title: 'DPM shift tracker',
-        // date: current.date_formatted || 'no info',
-        // id: current._id || 'no info',
-        // items: current.items || 'no info',
-        // rate: current.rate || 'no info',
-        // shifts
+        date: current.date_formatted,
+        id: current._id,
+        items: current.items,
+        rate: current.rate,
+        shifts
       });
   } else {
     return res

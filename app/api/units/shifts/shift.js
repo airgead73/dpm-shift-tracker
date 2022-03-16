@@ -28,7 +28,7 @@ const shiftSchema = mongoose.Schema({
 
 shiftSchema.pre('save', function(next) {
 
-  this.date_formatted = format(this.date, 'MMMM do yyyy');
+  this.date_formatted = format(this.date, 'MMMM d, yyyy');
 
   next();
 
