@@ -1,5 +1,15 @@
 const forms = Array.from(document.querySelectorAll('.form'));
 
+const handleResponse = ($method, $data) => {
+
+  if($method === 'POST' || $method === 'PUT' || $method === 'DELETE') {
+    alert($data.message);
+  }
+
+  window.location.reload();
+
+}
+
 const fetchData = async ($form) => {
   const attrs = $form.getAttributeNames().reduce((acc, name) => {
     return {...acc, [name]: $form.getAttribute(name)}
@@ -37,14 +47,8 @@ const fetchData = async ($form) => {
 
   const response = await fetch(attrs.action, options);
   const data = await response.json();
-  const { success, message } = data;
-
-  if(attrs.method === 'POST' || attrs.method === 'PUT' || attrs.method === 'DELETE') {
-    alert(message);
-  }
-
-  window.location.reload();
   
+  handleResponse(attrs.method, data);  
 
 }
 
