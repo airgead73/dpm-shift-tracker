@@ -1,34 +1,38 @@
 <%- include ('../partials/head') %>
 
   <header>
-    <h1>DPM SHIFT TRACKER</h1>
-    <p><span><small><a href="/logout">logout</a></small></span></p>
+    <h1>DPM Shift Tracker</h1>
+    <nav>
+      <a href="/logout">logout</a>
+    </nav>
   </header>
+
   <main>
-    <details>
-      <summary><b>start new shift</b></summary>
+    <section>
       <form class="form" id="form_shifts_post" action="/api/shifts" method="POST" enctype="application/json" target="/">
         <fieldset>
-          <label for="date">
-
-            <input type="datetime-local" id="date" name="date">
-          </label>
-          <button type="submit">start</button>
+          <legend>
+            <h2>start a shift</h2>
+            <label for="date">
+              <input type="datetime-local" id="date" name="date">
+            </label>
+            <button type="submit">start</button>
+          </legend>
         </fieldset>
       </form>
-    </details>
-
-    <details>
-      <summary><b>current shift</b></summary>
-      <h3><%= date %></h3>
-      <p>items: <%= items %>
-      </p>
-      <p>rate: <%= rate %>
-      </p>
+    </section>
+    <section>
+      <article>
+        <h2>current shift</h2>
+        <h3><%= date %></h3>
+        <p><b>items: </b><%= items %> <b>rate: </b><%= rate %></p>        
+      </article>
       <form class="form" id="form_shifts_update" action="/api/shifts/<%= id %>" method="PUT" enctype="application/json"
         target="/">
         <fieldset>
-          <legend>add items</legend>
+          <legend>
+            <h3>add items</h3>
+          </legend>
           <input type="number" id="items" name="items">
           <button type="submit">add</button>
         </fieldset>
@@ -39,40 +43,53 @@
           <button type="submit">calculate rate</button>
         </fieldset>
       </form>
-    </details>
-    <table>
-      <caption>shift list</caption>
-      <thead>
-        <tr>
-          <th>date</th>
-          <th>items</th>
-          <th>rate</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% shifts.forEach(item=> { %>
+      <form class="form" id="form_shifts_delete" action="/api/shifts/<%= id %>" method="DELETE"
+        enctype="application/json" target="/">
+        <fieldset>
+          <button type="submit">delete</button>
+        </fieldset>
+      </form>      
+    </section>
+    <section>
+      <h2>shift list</h2>
+      <table>
+        <caption>shift list</caption>
+        <thead>
           <tr>
-            <td>
-              <%= item.date_formatted %>
-            </td>
-            <td>
-              <%= item.items %>
-            </td>
-            <td>
-              <%= item.rate %>
-            </td>
-            <td>
-              <form class="form" id="form_shifts_delete" action="/api/shifts/<%= id %>" method="DELETE"
-                enctype="application/json" target="/">
-                <button type="submit">delete</button>
-              </form>
-            </td>
+            <th>date</th>
+            <th>items</th>
+            <th>rate</th>
+            <th></th>
           </tr>
-          <% }) %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% shifts.forEach(item=> { %>
+            <tr>
+              <td>
+                <%= item.date_formatted %>
+              </td>
+              <td>
+                <%= item.items %>
+              </td>
+              <td>
+                <%= item.rate %>
+              </td>
+              <td>
+                <form class="form" id="form_shifts_delete" action="/api/shifts/<%= id %>" method="DELETE"
+                  enctype="application/json" target="/">
+                  <button type="submit">delete</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>      
+    </section>
+
+
 
   </main>
+
+ 
 
   <%- include('../partials/foot') %>

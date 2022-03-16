@@ -1,4 +1,5 @@
 const forms = Array.from(document.querySelectorAll('.form'));
+console.log(forms);
 
 const fetchData = async ($form) => {
   const attrs = $form.getAttributeNames().reduce((acc, name) => {
