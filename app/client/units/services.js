@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Shift } = require('../../api/units/shifts');
-const shift = require('../../api/units/shifts/shift');
 
 const getCurrentShift = async () => {
   const shift = await Shift.findOne().sort({ date: -1});
