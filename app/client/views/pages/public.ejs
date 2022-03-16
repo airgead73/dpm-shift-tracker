@@ -1,11 +1,21 @@
 <%- include ('../partials/head') %>
 
 <header>
-  <h1>DPM Shift Tracker</h1>
-  <nav>
-    <a href="/login">login</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">DPM Shift Tracker</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+
+        <span class="navbar-text">
+          <a href="/login">login</a>
+        </span>
+      </div>
+    </div>
   </nav>
 </header>
-
 
 <%- include('../partials/foot') %>
