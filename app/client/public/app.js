@@ -1,5 +1,17 @@
 const forms = Array.from(document.querySelectorAll('.form'));
 
+const handleResponse = ($data) => {
+
+  const { success, message } = $data;
+
+  if(!success) {
+    return console.error(message);
+  } else {
+    return console.log(message);
+  }
+
+}
+
 const fetchData = async ($form) => {
   const attrs = $form.getAttributeNames().reduce((acc, name) => {
     return {...acc, [name]: $form.getAttribute(name)}
@@ -37,17 +49,19 @@ const fetchData = async ($form) => {
 
   const response = await fetch(attrs.action, options);
   const data = await response.json();
-  const { success } = data;
-
-  if(success) window.location.reload();
   
+
+  return data;   
 
 }
 
-forms.forEach(form => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    fetchData(event.target);
+const initForms = ($forms) => {
+  $forms.forEach(form => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      fetchData(event.target).then(data => handleResponse(data));
+    });
+    
   });
-  
-});
+}
+
