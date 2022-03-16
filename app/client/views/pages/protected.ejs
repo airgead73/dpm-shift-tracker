@@ -75,7 +75,7 @@
                 <%= item.rate %>
               </td>
               <td>
-                <form class="form" id="form_shifts_delete" action="/api/shifts/<%= id %>" method="DELETE"
+                <form class="form" id="form_shifts_delete" action="/api/shifts/<%= item.id %>" method="DELETE"
                   enctype="application/json" target="/">
                   <button type="submit">delete</button>
                 </form>

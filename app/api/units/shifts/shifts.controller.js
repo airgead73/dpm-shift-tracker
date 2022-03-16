@@ -18,7 +18,7 @@ const format = require('date-fns/format');
   
   res.status(200).json({
     success: true,    
-    message: "create shift",
+    message: `Shift has been created: ${shift.date_formatted}.`,
     shift
   });
 
@@ -82,7 +82,7 @@ const format = require('date-fns/format');
   
   res.status(200).json({
     success: true,
-    message: "shift item count updated",
+    message: `Shift has been updated: ${shift.date_formatted}.`,
     new_count: newCount
   });
 
@@ -95,9 +95,14 @@ const format = require('date-fns/format');
  * */
 
  exports.remove = asyncHandler(async (req, res) => { 
+
+  let shift = await Shift.findById(req.params.id);
+
+  await shift.remove();
   
   res.status(200).json({
-    message: "delete shift"
+    success: true,
+    message: `Shift deleted: ${shift.date_formatted}.`
   });
 
 });
@@ -117,7 +122,7 @@ const format = require('date-fns/format');
   
   res.status(200).json({
     success: true,
-    message: "shift rate has been set",
+    message: `Shift rate calculated: ${shift.date_formatted}.`,
     rate: shift.rate
   });
 

@@ -1,5 +1,4 @@
 const forms = Array.from(document.querySelectorAll('.form'));
-console.log(forms);
 
 const fetchData = async ($form) => {
   const attrs = $form.getAttributeNames().reduce((acc, name) => {
@@ -38,9 +37,13 @@ const fetchData = async ($form) => {
 
   const response = await fetch(attrs.action, options);
   const data = await response.json();
-  const { success } = data;
+  const { success, message } = data;
 
-  if(success) window.location.reload();
+  if(attrs.method === 'POST' || attrs.method === 'PUT' || attrs.method === 'DELETE') {
+    alert(message);
+  }
+
+  window.location.reload();
   
 
 }
