@@ -9,6 +9,7 @@ const { getAllShifts } = require('../services');
 exports.landing = asyncHandler(async (req, res, next) => {
 
  if(res.locals.isAuthenticated) {
+   
     const { current, shifts } = await getAllShifts();
 
     return res
@@ -22,20 +23,16 @@ exports.landing = asyncHandler(async (req, res, next) => {
         rate: current.rate,
         shifts
       });
+
   } else {
+
     return res
     .status(200)
     .render('pages/public', {
       success: true,
       title: 'DPM shift tracker'
     });
-  }
 
-  return res
-  .status(200)
-  .render('pages/public', {
-    success: true,
-    title: 'DPM shift tracker'
-  });
+  }
     
 });
