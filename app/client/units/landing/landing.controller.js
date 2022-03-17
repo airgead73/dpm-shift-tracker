@@ -14,7 +14,7 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
     return res
       .status(200)
-      .render('pages/protected', {
+      .render('pages/dashboard', {
         success: true,
         title: 'DPM shift tracker',
         date: current.date_formatted,

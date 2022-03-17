@@ -50,7 +50,7 @@ const format = require('date-fns/format');
  * @access Private
  * */
 
- exports.readOne = asyncHandler(async (req, res) => { 
+ exports.detail = asyncHandler(async (req, res) => { 
 
   const shift = await Shift.findOne().sort({ date: -1});
   
