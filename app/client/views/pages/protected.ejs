@@ -44,7 +44,7 @@
             <%= items %> <b>rate: </b>
               <%= rate %>
           </p>
-          <form class="formmb-5" id="form_shifts_update" action="/api/shifts/<%= id %>" method="PUT"
+          <form class="form mb-5" id="form_shifts_update" action="/api/shifts/<%= id %>" method="PUT"
             enctype="application/json" target="/">
 
 
@@ -63,7 +63,7 @@
           <form class="form mt-3" id="form_shifts_delete" action="/api/shifts/<%= id %>" method="DELETE"
             enctype="application/json" target="/">
             <div class="d-grid gap-2">
-              <button class="btn btn-secondary" type="submit">delete</button>
+              <button class="btn btn-secondary" type="submit">delete current shift</button>
             </div>
           </form>
         </div>
