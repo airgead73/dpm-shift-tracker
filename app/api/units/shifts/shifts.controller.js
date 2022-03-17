@@ -1,5 +1,4 @@
 const asyncHandler = require('express-async-handler');
-const mongoose = require('mongoose');
 const Shift = require('./shift');
 const format = require('date-fns/format');
 
@@ -14,7 +13,6 @@ const format = require('date-fns/format');
   const shift = new Shift(req.body);
 
   await shift.save();
-
   
   res.status(200).json({
     success: true,    
@@ -32,13 +30,11 @@ const format = require('date-fns/format');
 
  exports.read = asyncHandler(async (req, res) => { 
 
-  const shift = await Shift.findOne().sort('-date');
-
-  const { date } = shift;  
+  const shifts = await Shift.find().sort('-date');
   
   res.status(200).json({
     message: "get shifts",
-    date: format(date, 'MMMM do yyyy')
+    shifts
     
   });
 
@@ -73,10 +69,8 @@ const format = require('date-fns/format');
 
   const { items: newItems } = req.body;
   const { items: oldItems } = shift;
-  const newItemsInteger = parseInt(newItems);
-  const oldItemsInteger = parseInt(oldItems);
   
-  const newCount = newItemsInteger + oldItemsInteger;
+  const newCount = parseInt(newItems); + parseInt(oldItems);;
 
   shift = await Shift.findByIdAndUpdate(req.params.id, { $set: { items: newCount } }, { new: true });
   
