@@ -70,11 +70,14 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
  exports.update = asyncHandler(async (req, res, next) => {
 
+  const shift = await getById(req.params.id);
+
   return res
     .status(200)
     .render('pages/shifts-update', {
       success: true,
-      title: "DPM shift tracker"
+      title: "DPM shift tracker",
+      shift
     });
     
 });
