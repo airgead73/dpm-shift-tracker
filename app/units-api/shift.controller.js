@@ -47,13 +47,9 @@ const format = require('date-fns/format');
  * */
 
  exports.detail = asyncHandler(async (req, res) => { 
-
-  const shift = await Shift.findOne({ id: req.params.id});
-  const { update } = req.query;
   
   res.status(200).json({
     message: "get one shift",
-    update
   });
 
 });
@@ -63,5 +59,35 @@ const format = require('date-fns/format');
  * @route GET - /api/shifts/:id
  * @access Private
  * */
+
+ exports.update = asyncHandler(async (req, res) => { 
+
+  let message;
+  const { field } = req.query;
+
+  switch(only) {
+    case 'items':
+      message = 'only update items';
+      break;
+    case 'rate':
+      message = 'only update rate';
+      break;
+    case 'all':
+      message = 'update all fields'
+    default:
+      message = 'update miscellaneous fields'
+  }
+
+  //const shift = await Shift.findOne({ id: req.params.id});
+  //const shift = await Shift.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  
+  res.status(200).json({
+    message
+  });
+
+});
+
+
+
 
  

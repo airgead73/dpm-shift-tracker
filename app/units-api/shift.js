@@ -6,9 +6,6 @@ const shiftSchema = mongoose.Schema({
     type: Date,
     required: [true, 'Please, add a date value.']
   },
-  date_formatted: {
-    type: String
-  },
   active: {
     type: Boolean,
     default: true
@@ -20,38 +17,26 @@ const shiftSchema = mongoose.Schema({
   items: {
     type: Number,
     default: 0    
-  },
-  rate: {
-    type: Number,
-    default: 0
-  } 
+  }
 }, {
   timestamps: true
 });
 
-shiftSchema.pre('save', function(next) {
+shiftSchema.set('toObject', {virtuals: true});
+shiftSchema.set('toJSON', {virtuals: true});
 
-  this.date_formatted = format(this.date, 'MMMM d, yyyy');
+shiftSchema.virtual('date_formated', )
 
-  next();
+shiftSchema.virtual('date_formatted').get(function() {
+
+  return format(this.date, 'MMMM d, yyyy');
 
 });
 
-shiftSchema.methods.calculateRate = function() {
+shiftSchema.virtual('rate').get(function() {
 
-  this.rate = Math.round(this.items / this.hours); 
-  
-  return this.rate;
+  return Math.round(this.items / this.hours);
 
-}
-
-shiftSchema.methods.addItems = function($newItems) {
-
-  this.rate = Math.round(this.items / this.hours); 
-  const newCount = parseInt(this.items + parseInt($newItems));  
-  
-  return newCount;
-
-}
+});
 
 module.exports = mongoose.model('Shift', shiftSchema);

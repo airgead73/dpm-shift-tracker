@@ -5,6 +5,14 @@
 
   <h2>shift dashboard</h2>
 
+  <ul>
+    <% shifts.forEach((item) => { %>
+
+      <li><p><a href="/shifts/<%= item.id %>"><%= item.date_formatted %> </a></p></li>
+
+    <% }) %> 
+  </ul>
+
 </main>
 
 <%- include('../partials/foot') %>

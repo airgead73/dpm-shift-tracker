@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const { getById, getAll, getActive } = require('./shift.services');
 
 /**
  * @desc view shift landing page
@@ -8,11 +9,15 @@ const asyncHandler = require('express-async-handler');
 
 exports.landing = asyncHandler(async (req, res, next) => {
 
+  const activeShift = await getActive();
+  const renderPath = activeShift === null ? 'pages/shifts-new' : 'pages/shifts-current';
+
   return res
     .status(200)
-    .render('pages/shifts', {
+    .render(renderPath, {
       success: true,
-      title: "DPM shift tracker"
+      title: "DPM shift tracker",
+      shift: activeShift
     });
     
 });
@@ -25,11 +30,14 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
  exports.dashboard = asyncHandler(async (req, res, next) => {
 
+  const shifts = await getAll();
+
   return res
     .status(200)
     .render('pages/shifts-dashboard', {
       success: true,
-      title: "DPM shift tracker"
+      title: "DPM shift tracker",
+      shifts
     });
     
 });
@@ -42,11 +50,14 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
  exports.detail = asyncHandler(async (req, res, next) => {
 
+  const shift = await getById(req.params.id);
+
   return res
     .status(200)
     .render('pages/shifts-detail', {
       success: true,
-      title: "DPM shift tracker"
+      title: "DPM shift tracker",
+      shift
     });
     
 });
