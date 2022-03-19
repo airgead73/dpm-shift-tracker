@@ -10,7 +10,7 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
   return res
     .status(200)
-    .render('pages/shifts/index', {
+    .render('pages/shifts', {
       success: true,
       title: "DPM shift tracker"
     });
