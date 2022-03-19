@@ -45,4 +45,13 @@ shiftSchema.methods.calculateRate = function() {
 
 }
 
+shiftSchema.methods.addItems = function($newItems) {
+
+  this.rate = Math.round(this.items / this.hours); 
+  const newCount = parseInt(this.items + parseInt($newItems));  
+  
+  return newCount;
+
+}
+
 module.exports = mongoose.model('Shift', shiftSchema);

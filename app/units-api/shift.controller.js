@@ -21,3 +21,47 @@ const format = require('date-fns/format');
   });
 
 });
+
+/**
+ * @desc Read shift
+ * @route GET - /api/shifts
+ * @access Private
+ * */
+
+ exports.read = asyncHandler(async (req, res) => { 
+
+  const shifts = await Shift.find().sort('-date');
+  
+  res.status(200).json({
+    message: "get shifts",
+    shifts
+    
+  });
+
+});
+
+/**
+ * @desc Read one shift
+ * @route GET - /api/shifts/:id
+ * @access Private
+ * */
+
+ exports.detail = asyncHandler(async (req, res) => { 
+
+  const shift = await Shift.findOne({ id: req.params.id});
+  const { update } = req.query;
+  
+  res.status(200).json({
+    message: "get one shift",
+    update
+  });
+
+});
+
+/**
+ * @desc Read one shift
+ * @route GET - /api/shifts/:id
+ * @access Private
+ * */
+
+ 

@@ -52,8 +52,9 @@ if(isDev) {
  * routes
  */
 
-app.use('/', clientRouter);
 app.use('/api', apiRouter);
+app.use('/', clientRouter);
+
 
 /**
  * error handling

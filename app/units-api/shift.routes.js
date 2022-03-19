@@ -2,11 +2,11 @@ const { Router } = require('express');
 const shiftRouter = Router();
 
 // controller
-const { create } = require('./shift.controller');
+const { create, read, detail } = require('./shift.controller');
 
 // routes
-shiftRouter.route('/').post(create);
-//shiftsRouter.route('/:id').get(detail).put(update).delete(remove);
+shiftRouter.route('/').get(read).post(create);
+shiftRouter.route('/:id').get(detail);
 //shiftsRouter.route('/:id/rate').get(setRate);
 
 // export
