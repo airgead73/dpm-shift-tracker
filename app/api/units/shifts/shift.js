@@ -10,6 +10,10 @@ const shiftSchema = mongoose.Schema({
   date_formatted: {
     type: String
   },
+  active: {
+    type: Boolean,
+    default: true
+  },
   hours: {
     type: Number,
     default: 7.5
