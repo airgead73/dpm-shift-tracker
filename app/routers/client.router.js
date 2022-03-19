@@ -3,6 +3,6 @@ const clientRouter = Router();
 const { checkAuthClient } = require('../middleware/authMiddleware');
 const { shiftsRouter } = require('../units-client');
 
-clientRouter.use('/', checkAuthClient, shiftsRouter);
+clientRouter.use('/', shiftsRouter);
 
 module.exports = clientRouter;

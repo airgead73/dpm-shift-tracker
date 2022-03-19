@@ -17,6 +17,16 @@ const shiftSchema = mongoose.Schema({
   items: {
     type: Number,
     default: 0    
+  },
+  floor: {
+    type: Number,
+    min: 2,
+    max: 5,
+    required: [true, 'Please, add floor value.']
+  },
+  comments: {
+    type: String,
+    max: 500
   }
 }, {
   timestamps: true

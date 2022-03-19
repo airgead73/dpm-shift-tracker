@@ -28,12 +28,14 @@ const format = require('date-fns/format');
  * @access Private
  * */
 
- exports.read = asyncHandler(async (req, res) => { 
+ exports.read = asyncHandler(async (req, res, next) => { 
 
-  const shifts = await Shift.find().sort('-date');
+  const { success, count, data: shifts } = res.results;
   
   res.status(200).json({
-    message: "get shifts",
+    success: success,
+    count: count,
+    message: count > 0 ? `GET: ${count} item(s) found` : 'No shifts found.',
     shifts
     
   });
@@ -46,7 +48,7 @@ const format = require('date-fns/format');
  * @access Private
  * */
 
- exports.detail = asyncHandler(async (req, res) => { 
+ exports.detail = asyncHandler(async (req, res, next) => { 
   
   res.status(200).json({
     message: "get one shift",
@@ -55,12 +57,12 @@ const format = require('date-fns/format');
 });
 
 /**
- * @desc Read one shift
- * @route GET - /api/shifts/:id
+ * @desc Update one shift
+ * @route PUT - /api/shifts/:id
  * @access Private
  * */
 
- exports.update = asyncHandler(async (req, res) => { 
+ exports.update = asyncHandler(async (req, res, next) => { 
 
   let message;
   const { field } = req.query;
@@ -86,6 +88,28 @@ const format = require('date-fns/format');
   });
 
 });
+
+/**
+ * @desc Delete one shift
+ * @route DELETE - /api/shifts/:id
+ * @access Private
+ * */
+
+ exports.remove = asyncHandler(async (req, res, next) => { 
+
+  let shift = await Shift.findById(req.params.id);
+
+  await shift.remove();
+
+  return res
+    .status(200)
+    .json({
+      success: true,
+      message: `Deleted: ${shift.date_formatted}.`
+    });
+
+
+ })
 
 
 

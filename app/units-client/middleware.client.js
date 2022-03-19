@@ -1,28 +1,14 @@
-const handleQuery = (model) => async (req, res, next) => {
+const handleQuery = ($model) => async (req, res, next) => {
 
   let query;
 
-  const reqQuery = {...req.query}; 
+  const reqQuery = {...req.query};
 
-  const removeFields = ['select', 'sort']
-
-  removeFields.forEach(param => delete reqQuery[param]);
+  if(req.params.id) reqQuery.id = req.params.id;
 
   let queryStr = JSON.stringify(reqQuery);
 
-  // Select Fields
-  if (req.query.select) {
-    const fields = req.query.select.split(',').join(' ');
-    query = query.select(fields)
-  }
-
-  // sort
-  if (req.query.sort) {
-    const sortBy = req.query.sort.split(',').join(' ');
-    query = query.sort(sortBy)
-  } else {
-    query = query.sort('-date')
-  }
+  query = $model.find(JSON.parse(queryStr));
 
   const results = await query;
 
@@ -36,6 +22,22 @@ const handleQuery = (model) => async (req, res, next) => {
 
 }
 
+const getActive = ($model) => (req, res, next) => {
+
+  const results = await $model.findOne({ active: true });
+  
+  res.results = {
+    success: true,
+    count: results.length,
+    data: results
+  }
+
+  next();
+  
+}
+
 module.exports = {
-  handleQuery
+  handleQuery,
+  getActive
 };
+
