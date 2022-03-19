@@ -16,20 +16,7 @@
   </nav>
 </header>
 <main>
-  <section>
-    <form class="form card mt-5 mb-5" class="form" id="form_shifts_post" action="/api/shifts" method="POST"
-      enctype="application/json" target="/">
-      <div class="card-header">
-        start new shift
-      </div>
-      <div class="card-body">
-        <div class="input-group">
-          <input type="datetime-local" class="form-control" name="date">
-          <button class="btn btn-outline-secondary" type="submit">start</button>
-        </div>
-      </div>
-    </form>
-  </section>  
+<%- include('../partials/shiftNew') %>
 </main>
 
 <%- include('../partials/foot') %>

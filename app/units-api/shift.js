@@ -4,8 +4,7 @@ const format = require('date-fns/format');
 const shiftSchema = mongoose.Schema({
   date: {
     type: Date,
-    required: [true, 'Please, add a date value.'],
-    default: Date.now
+    required: [true, 'Please, add a date value.']
   },
   date_formatted: {
     type: String

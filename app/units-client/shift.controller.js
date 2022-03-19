@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const Shift = require('../units-api/shift');
 
 /**
  * @desc view shift landing page
@@ -7,6 +8,10 @@ const asyncHandler = require('express-async-handler');
  */
 
 exports.landing = asyncHandler(async (req, res, next) => {
+
+  const shift = await Shift.findOne({ active: true});
+
+  console.log(shift);
 
   return res
     .status(200)
