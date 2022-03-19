@@ -9,7 +9,7 @@ const { auth } = require('express-openid-connect');
  * internal imports
  */
  const {/** variables */ isDev, /** configs */ authConfig, connectDB } = require('./config');
-const { clientRouter, apiRouter } = require('./routers');
+//const { clientRouter, apiRouter } = require('./routers');
 const { errorHandler } = require('./middleware/errorMiddleware');
 
 
@@ -25,10 +25,10 @@ const { errorHandler } = require('./middleware/errorMiddleware');
  * middleware
  */
 
-app.use(express.static(path.join(__dirname, 'client/public')));
+//app.use(express.static(path.join(__dirname, 'client/public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.set('views', path.join(__dirname, 'client/views'));
+//app.set('views', path.join(__dirname, 'client/views'));
 app.set('view engine', 'ejs');
 
 /**
