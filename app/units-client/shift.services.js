@@ -21,8 +21,13 @@ const getActive = async () => {
   return item
 }
 
+const updateShift = async ($fields) => {
+  console.log('update items only')
+}
+
 module.exports = {
   getById,
   getAll,
-  getActive
+  getActive,
+  updateShift
 }

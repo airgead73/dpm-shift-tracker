@@ -14,7 +14,7 @@
               <%= shift.items %> <b>rate: </b>
                 <%= shift.rate %>
             </p>
-            <form class="form mb-5" id="form_shifts_update" action="/api/shifts/<%= shift.id %>" method="PUT"
+            <form class="form mb-5" id="form_shifts_update" action="/api/shifts/<%= shift.id %>?fields=items" method="PUT"
               enctype="application/json" target="/">
   
   

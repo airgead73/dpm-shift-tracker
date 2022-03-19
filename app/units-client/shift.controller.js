@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const { getById, getAll, getActive } = require('./shift.services');
+const { getById, getAll, getActive, updateShift } = require('./shift.services');
 
 /**
  * @desc view shift landing page
@@ -74,7 +74,10 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
  exports.update = asyncHandler(async (req, res, next) => {
 
-  const shift = await getById(req.params.id);
+  const { fields } = req.query;
+  const { id } = req.params;
+
+  updateShift(id, fields)
 
   return res
     .status(200)

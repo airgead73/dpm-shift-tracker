@@ -14,7 +14,7 @@ body {
 
 .section--new,
 .section--current {
-  width: 95%;
+  width: 90%;
   max-width: 480px;
   display: block;
 }
