@@ -11,13 +11,12 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
   const shift = await Shift.findOne({ active: true});
 
-  console.log(shift);
-
   return res
     .status(200)
     .render('pages/shifts', {
       success: true,
-      title: "DPM shift tracker"
+      title: "DPM shift tracker",
+      shift
     });
     
 });

@@ -16,7 +16,13 @@
   </nav>
 </header>
 <main>
-<%- include('../partials/shiftNew') %>
+
+  <% if(shift === null) { %> 
+    <%- include('../partials/shiftNew') %>
+  <% } else { %>
+    <%- include('../partials/shiftAdd') %>
+  <% } %>  
+
 </main>
 
 <%- include('../partials/foot') %>

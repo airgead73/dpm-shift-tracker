@@ -1,3 +1,39 @@
 <section class="current_shift">
-  <h2>add items</h2>
+  <section class="current_shift">
+    <article class="card mb-5">
+      <div class="card-header">
+        current shift
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= shift.date_formatted %>
+        </h5>
+        <p class="card-text"><b>items: </b>
+          <%= shift.items %> <b>rate: </b>
+            <%= shift.rate %>
+        </p>
+        <form class="form mb-5" id="form_shifts_update" action="/api/shifts/<%= shift.id %>" method="PUT"
+          enctype="application/json" target="/">
+
+          <div class="input-group">
+            <input type="number" class="form-control" name="items">
+            <button class="btn btn-outline-secondary" type="submit">add items</button>
+          </div>
+
+        </form>
+        <form class="form mt-3" id="form_shifts_end" action="/api/shifts/<%= shift.id %>?end=true" method="GET"
+          enctype="application/json" target="/">
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">end shift</button>
+          </div>
+        </form>
+        <form class="form mt-3" id="form_shifts_delete" action="/api/shifts/<%= shift.id %>" method="DELETE"
+          enctype="application/json" target="/">
+          <div class="d-grid gap-2">
+            <button class="btn btn-secondary" type="submit">delete current shift</button>
+          </div>
+        </form>
+      </div>
+    </article>
+  </section>
 </section>
