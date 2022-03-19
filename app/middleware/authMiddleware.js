@@ -1,4 +1,4 @@
-const checkAuth = function(req, res, next) {
+const checkAuthClient = function(req, res, next) {
 
   const { isAuthenticated } = res.locals;
 
@@ -12,5 +12,5 @@ const checkAuth = function(req, res, next) {
 }
 
 module.exports = {
-  checkAuth
+  checkAuthClient
 }

@@ -4,13 +4,12 @@
 const express = require('express');
 const path = require('path');
 const { auth } = require('express-openid-connect');
-const { checkAuth } = require('./middleware/authMiddleware');
 
 /**
  * internal imports
  */
  const {/** variables */ isDev, /** configs */ authConfig, connectDB } = require('./config');
-const { clientRouter } = require('./routers');
+const { clientRouter, apiRouter } = require('./routers');
 const { errorHandler } = require('./middleware/errorMiddleware');
 
 
@@ -53,8 +52,8 @@ if(isDev) {
  * routes
  */
 
-app.use('/', checkAuth, clientRouter);
-//app.use('/api', apiRouter);
+app.use('/', clientRouter);
+app.use('/api', apiRouter);
 
 /**
  * error handling
