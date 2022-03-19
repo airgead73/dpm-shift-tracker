@@ -4,6 +4,7 @@
 const express = require('express');
 const path = require('path');
 const { auth } = require('express-openid-connect');
+const { checkAuth } = require('./middleware/authMiddleware');
 
 /**
  * internal imports
@@ -52,7 +53,7 @@ if(isDev) {
  * routes
  */
 
-app.use('/', clientRouter);
+app.use('/', checkAuth, clientRouter);
 //app.use('/api', apiRouter);
 
 /**

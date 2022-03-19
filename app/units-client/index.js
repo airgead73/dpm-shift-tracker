@@ -1,4 +1,4 @@
-const ShiftsRouter = require('./shift.routes');
+const shiftsRouter = require('./shift.routes');
 
 module.exports = {
   shiftsRouter
