@@ -11,12 +11,14 @@ exports.landing = asyncHandler(async (req, res, next) => {
 
   const activeShift = await getActive();
   const renderPath = activeShift === null ? 'pages/shifts-new' : 'pages/shifts-current';
+  const mainClass = activeShift === null ? 'main--new' : 'main--current';
 
   return res
     .status(200)
     .render(renderPath, {
       success: true,
       title: "DPM shift tracker",
+      main: mainClass,
       shift: activeShift
     });
     
@@ -37,6 +39,7 @@ exports.landing = asyncHandler(async (req, res, next) => {
     .render('pages/shifts-dashboard', {
       success: true,
       title: "DPM shift tracker",
+      main: "main--dashboard",
       shifts
     });
     
@@ -57,6 +60,7 @@ exports.landing = asyncHandler(async (req, res, next) => {
     .render('pages/shifts-detail', {
       success: true,
       title: "DPM shift tracker",
+      main: "main--detail",
       shift
     });
     
@@ -77,6 +81,7 @@ exports.landing = asyncHandler(async (req, res, next) => {
     .render('pages/shifts-update', {
       success: true,
       title: "DPM shift tracker",
+      main: "main--update",
       shift
     });
     
@@ -94,7 +99,8 @@ exports.landing = asyncHandler(async (req, res, next) => {
     .status(200)
     .render('pages/shifts-remove', {
       success: true,
-      title: "DPM shift tracker"
+      title: "DPM shift tracker",
+      main: "main--remove",
     });
     
 });
