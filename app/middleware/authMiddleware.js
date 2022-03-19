@@ -8,7 +8,6 @@ const checkAuth = function(req, res, next) {
     return res.status(401).redirect('/login');
   }
 
-  next();
 
 }
 
