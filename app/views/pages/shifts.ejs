@@ -1,8 +1,35 @@
 <%- include ('../partials/head') %>
 
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">DPM Shift Tracker</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="/logout">logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
 <main>
-  <h1>DPM Tracker (private)</h1>
-  <p><a href="/logout">logout</a></p>
+  <section>
+    <form class="form card mt-5 mb-5" class="form" id="form_shifts_post" action="/api/shifts" method="POST"
+      enctype="application/json" target="/">
+      <div class="card-header">
+        start new shift
+      </div>
+      <div class="card-body">
+        <div class="input-group">
+          <input type="datetime-local" class="form-control" name="date">
+          <button class="btn btn-outline-secondary" type="submit">start</button>
+        </div>
+      </div>
+    </form>
+  </section>  
 </main>
 
 <%- include('../partials/foot') %>
