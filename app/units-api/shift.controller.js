@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const { parse } = require('handlebars/runtime');
 const Shift = require('./shift');
 
 /**
@@ -105,7 +106,7 @@ const Shift = require('./shift');
 
     const { items: newItems } = req.body;
     const reqBody = {...req.body }
-    reqBody.items = shift.items + newItems;
+    reqBody.items = parsInt(shift.items) + parseInt(newItems);
     const activeShift = await Shift.findByIdAndUpdate(req.params.id, reqBody, { new: true });
 
     return res.status(200).json({

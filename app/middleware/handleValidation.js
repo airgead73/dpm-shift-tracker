@@ -20,13 +20,13 @@ const validationRules = ($method) => {
           }
           return true
         }),
-        body('floor', 'Please, enter floor. [val]').optional({nullable: true, checkFalsy: true}).isNumeric().escape().custom((value) => {
-          if(value < 2 || value > 5) {
+        body('floor', 'Please, enter floor. [val]').not().isEmpty().isNumeric().custom((value) => {
+          if(value === 1 || value > 5) {
             throw new Error('Floor must be 2, 3, 4, or 5.')
           }
           return true;
         }),
-        body('comments', 'Comments should be less than 500 characters.').isString().trim().escape().isLength({ max: 500 })
+        body('comments', 'Comments should be less than 500 characters.').optional({nullable: true, checkFalsy: true}).isString().trim().escape().isLength({ max: 500 })
       ];
       break;
       case 'updateShift':
