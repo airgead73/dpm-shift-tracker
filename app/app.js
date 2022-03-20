@@ -19,6 +19,7 @@ const xss = require('xss-clean');
 const { handleError } = require('./middleware');
 const { authConfig, connectDB, limiter, sessionConfig } = require('./config');
 const { isDev } = require('./config/env');
+const { apiRouter } = require('./routers');
 
 /**
  * app activation
@@ -28,7 +29,7 @@ const { isDev } = require('./config/env');
  app.use(auth(authConfig));
 
  /** 
- * @desc security
+ * security
  */
 app.use(helmet());
 app.use(xss());
@@ -62,7 +63,7 @@ app.use(session(sessionConfig))
  * routes
  */
 
-
+app.use('/api', apiRouter);
 
 /**
  * error handling
