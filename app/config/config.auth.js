@@ -1,4 +1,4 @@
-const { issuerBaseUrl, baseUrl, clientId, authSecret } = require('./env.auth');
+const { authSecret, baseUrl, clientId, issuerBaseUrl } = require('./env');
 
 const authConfig = {
   authRequired: false,

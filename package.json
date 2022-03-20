@@ -30,6 +30,9 @@
     "express": "^4.17.3",
     "express-async-handler": "^1.2.0",
     "express-openid-connect": "^2.7.1",
+    "express-rate-limit": "^6.3.0",
+    "express-session": "^1.17.2",
+    "memorystore": "^1.6.7",
     "mongoose": "^6.2.6"
   },
   "devDependencies": {
