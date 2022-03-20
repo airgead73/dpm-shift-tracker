@@ -13,15 +13,12 @@ const session = require('express-session');
 const xss = require('xss-clean');
 
 /**
- * configs
+ * internal imports
  */
+
+const { handleError } = require('./middleware');
 const { authConfig, connectDB, limiter, sessionConfig } = require('./config');
-
-/**
- * variables
- */
-
-const { isDev } = require('./config/env')
+const { isDev } = require('./config/env');
 
 /**
  * app activation
@@ -43,7 +40,6 @@ app.use(limiter)
 /**
  * middleware
  */
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -71,7 +67,13 @@ app.use(session(sessionConfig))
 /**
  * error handling
  */
+ app.use(function(req, res, next) {
+  const error = new Error('Path not found');
+  error.status = 404;
+  next(error);
+});
 
+app.use(handleError);
 
 
 /**
