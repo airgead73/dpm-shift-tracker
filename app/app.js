@@ -25,11 +25,11 @@ const { errorHandler } = require('./middleware/errorMiddleware');
  * middleware
  */
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
 
 /**
  * dev middleware
@@ -53,7 +53,7 @@ if(isDev) {
  */
 
 app.use('/api', apiRouter);
-app.use('/', clientRouter);
+//app.use('/', clientRouter);
 
 
 /**
