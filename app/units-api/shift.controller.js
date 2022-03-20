@@ -21,11 +21,14 @@ const Shift = require('./shift');
       message: `Shift has been created: ${shift.date_formatted}.`,
       shift
     });
+
   } else {
+
     res.status(400).json({
       success: false,
       validation_results: errors
     });
+
   }
 
 
@@ -73,12 +76,25 @@ const Shift = require('./shift');
 
  exports.update = asyncHandler(async (req, res, next) => { 
 
- 
-  res.status(200).json({
-    success: true,    
-    message: 'PUT: update a shift',
+  const { success, errors } = res.validation_results;
 
-  });
+  if(success) {
+    const shift = await Shift.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    
+    res.status(200).json({
+      success: true,    
+      message: `Shift has been updated: ${shift.date_formatted}.`,
+      shift
+    });
+
+  } else {
+
+    res.status(400).json({
+      success: false,
+      validation_results: errors
+    });
+    
+  }
 
 });
 

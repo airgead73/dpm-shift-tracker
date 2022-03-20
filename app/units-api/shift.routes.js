@@ -10,7 +10,7 @@ const { validationRules, validate } = require('../middleware')
 
 // routes
 shiftRouter.route('/').get(read).post(validationRules('createShift'), validate, create);
-shiftRouter.route('/:id').get(detail).put(update).delete(remove);
+shiftRouter.route('/:id').get(detail).put(validationRules('updateShift'), validate, update).delete(remove);
 
 // export 
 module.exports = shiftRouter;
