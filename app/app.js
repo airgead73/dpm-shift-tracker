@@ -4,11 +4,24 @@
 const express = require('express');
 const path = require('path');
 const { auth } = require('express-openid-connect');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const helmet = require('helmet');
+const hpp = require('hpp');
+const mongoSanitize = require('express-mongo-sanitize');
+const session = require('express-session');
+const xss = require('xss-clean');
 
 /**
- * internal imports
+ * configs
  */
-const {/** variables */ isDev, /** configs */ authConfig, connectDB } = require('./config');
+const { authConfig, connectDB, limiter, sessionConfig } = require('./config');
+
+/**
+ * variables
+ */
+
+const { isDev } = require('./config/env')
 
 /**
  * app activation
@@ -17,12 +30,24 @@ const {/** variables */ isDev, /** configs */ authConfig, connectDB } = require(
  connectDB();
  app.use(auth(authConfig));
 
+ /** 
+ * @desc security
+ */
+app.use(helmet());
+app.use(xss());
+app.use(hpp());
+app.use(cors());
+app.use(mongoSanitize());
+app.use(limiter)
+
 /**
  * middleware
  */
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session(sessionConfig))
 
 /**
  * dev middleware
