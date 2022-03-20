@@ -6,7 +6,19 @@ const errorHandler = (err, req, res, next) => {
     status: statusCode,
     stack: process.env.NODE_ENV === 'production' ? null : err.stack
   }
-  res.status(statusCode).json(errorObject);
+
+  const resWithJson = req.headers.accept === 'application/json';
+
+  console.log(err.status)
+
+  if(req.headers.accept === 'application/json') {
+    console.log('accepts json')
+  }
+
+  if(req.path.includes('api')) {
+    return res.status(statusCode).json(errorObject);
+  }
+  //res.status(statusCode).json(errorObject);
   // res.status(statusCode).render('pages/error', {
   //   error: errorObject
   // });

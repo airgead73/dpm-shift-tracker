@@ -99,6 +99,18 @@ const format = require('date-fns/format');
 
   let shift = await Shift.findById(req.params.id);
 
+  const createError = ($status, $message) => {
+    const error = new Error($message);
+    error.status = $status;
+    error.stack = process.env.NODE_ENV === 'production' ? null : error.stack;
+    throw error;
+
+  }
+
+  if(!shift) {
+    createError(401, 'The shift you are looking for does not exist.');
+  }
+
   await shift.remove();
 
   return res

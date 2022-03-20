@@ -7,6 +7,10 @@ const logRequests = function(req, res, next) {
   console.log("accepts: ", req.headers.accept);
   console.log("method: ", req.method);
   console.log('\n*** end log ***\n\n'); 
+
+  if(req.path.includes('api')) {
+    console.log('api route')
+  }
   
   next();
 
