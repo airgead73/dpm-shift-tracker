@@ -5,10 +5,11 @@ const shiftRouter = Router();
 const { create, read, detail, update, remove } = require('./shift.controller');
 
 // middleware
-const { handleValidation } = require('../middleware')
+const { handleValidation } = require('../middleware');
+const { validationRules, validate } = require('../middleware')
 
 // routes
-shiftRouter.route('/').get(read).post(handleValidation, create);
+shiftRouter.route('/').get(read).post(validationRules('createShift'), validate, create);
 shiftRouter.route('/:id').get(detail).put(update).delete(remove);
 
 // export 

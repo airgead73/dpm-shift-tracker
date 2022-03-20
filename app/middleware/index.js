@@ -1,7 +1,8 @@
 const handleError = require('./handleError');
-const handleValidation = require('./handleValidation');
+const { validationRules, validate } = require('./handleValidation');
 
 module.exports = {
   handleError,
-  handleValidation
+  validationRules,
+  validate
 }

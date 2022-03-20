@@ -9,15 +9,26 @@ const Shift = require('./shift');
 
  exports.create = asyncHandler(async (req, res, next) => { 
 
-  const shift = new Shift(req.body);
+  const { success, errors } = res.validation_results;
 
-  await shift.save();
-  
-  res.status(200).json({
-    success: true,    
-    message: `Shift has been created: ${shift.date_formatted}.`,
-    shift
-  });
+  if(success) {
+    const shift = new Shift(req.body);
+
+    await shift.save();
+    
+    res.status(200).json({
+      success: true,    
+      message: `Shift has been created: ${shift.date_formatted}.`,
+      shift
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      validation_results: errors
+    });
+  }
+
+
 
 });
 
