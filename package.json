@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "local": "NODE_ENV=development node -r dotenv/config index.js"
+    "local": "NODE_ENV=development nodemon -r dotenv/config index.js"
   },
   "repository": {
     "type": "git",

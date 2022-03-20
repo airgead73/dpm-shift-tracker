@@ -8,9 +8,9 @@ const { auth } = require('express-openid-connect');
 /**
  * internal imports
  */
- const {/** variables */ isDev, /** configs */ authConfig, connectDB } = require('./config');
-const { apiRouter } = require('./routers');
-const { errorHandler } = require('./middleware/errorMiddleware');
+const {/** variables */ isDev, /** configs */ authConfig, connectDB } = require('./config');
+//const { apiRouter } = require('./routers');
+//const { errorHandler } = require('./middleware/errorMiddleware');
 
 
 
@@ -31,10 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 /**
  * dev middleware
  */
-if(isDev) {
-  const logRequests = require('./middleware/logMiddleware');
-  app.use(logRequests);
-}
+// //
 
 /**
  * locals
@@ -49,7 +46,7 @@ if(isDev) {
  * routes
  */
 
-app.use('/api', apiRouter);
+//app.use('/api', apiRouter);
 
 /**
  * error handling
@@ -61,7 +58,7 @@ app.use(function(req, res, next) {
   next(error);
 });
 
-app.use(errorHandler);
+//app.use(errorHandler);
 
 /**
  * export
