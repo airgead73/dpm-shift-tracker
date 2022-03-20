@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const Shift = require('./shift');
 
 /**
  * @desc Create shift
@@ -8,11 +9,14 @@ const asyncHandler = require('express-async-handler');
 
  exports.create = asyncHandler(async (req, res, next) => { 
 
- 
+  const shift = new Shift(req.body);
+
+  await shift.save();
+  
   res.status(200).json({
     success: true,    
-    message: 'POST: create shift',
-
+    message: `Shift has been created: ${shift.date_formatted}.`,
+    shift
   });
 
 });
@@ -42,8 +46,7 @@ const asyncHandler = require('express-async-handler');
 
  exports.detail = asyncHandler(async (req, res, next) => { 
 
- 
-  res.status(200).json({
+  res.status(201).json({
     success: true,    
     message: 'GET: read one shift',
 

@@ -4,6 +4,4 @@ const { shiftRouter } = require('../units-api');
 
 apiRouter.use('/shifts', shiftRouter);
 
-
-
 module.exports = apiRouter;

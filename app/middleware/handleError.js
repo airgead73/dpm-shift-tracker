@@ -10,5 +10,5 @@ const handleError = (err, req, res, next) => {
   res.status(statusCode).json(errorObject);
 }
 
-module.exports = handleError
+module.exports = handleError;
 
