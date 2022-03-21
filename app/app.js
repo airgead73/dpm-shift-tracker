@@ -19,7 +19,7 @@ const xss = require('xss-clean');
 const { handleError } = require('./middleware');
 const { authConfig, connectDB, limiter, sessionConfig } = require('./config');
 const { isDev } = require('./config/env');
-const { apiRouter } = require('./routers');
+const { apiRouter, clientRouter } = require('./routers');
 
 /**
  * app activation
@@ -41,10 +41,13 @@ app.use(limiter)
 /**
  * middleware
  */
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session(sessionConfig))
+app.use(session(sessionConfig));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 /**
  * dev middleware
@@ -64,6 +67,7 @@ app.use(session(sessionConfig))
  */
 
 app.use('/api', apiRouter);
+app.use('/', clientRouter);
 
 /**
  * error handling
