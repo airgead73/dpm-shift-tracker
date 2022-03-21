@@ -43,6 +43,8 @@ shiftSchema.virtual('date_formatted').get(function() {
 
 shiftSchema.virtual('rate').get(function() {
 
+  
+
   return Math.round(this.items / this.hours);
 
 });
