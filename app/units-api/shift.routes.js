@@ -6,12 +6,12 @@ const Shift = require('./shift');
 const { create, read, detail, update, remove } = require('./shift.controller');
 
 // middleware
-const { checkItem, handleValidation } = require('../middleware');
+const { handleValidation, handleQuery } = require('../middleware');
 const { validationRules, validate } = require('../middleware')
 
 // routes
-shiftRouter.route('/').get(read).post(validationRules('createShift'), validate, create);
-shiftRouter.route('/:id').get(detail).put(checkItem(Shift), update).delete(remove);
+shiftRouter.route('/').get(handleQuery(Shift), read).post(validationRules('createShift'), validate, create);
+shiftRouter.route('/:id').get(detail).put(update).delete(remove);
 
 // export 
 module.exports = shiftRouter;

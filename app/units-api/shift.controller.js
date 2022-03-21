@@ -44,10 +44,13 @@ const Shift = require('./shift');
 
  exports.read = asyncHandler(async (req, res, next) => { 
 
+  const { success, count, data: shifts } = res.results;
+
  
   res.status(200).json({
-    success: true,    
-    message: 'GET: read shifts',
+    success,    
+    count,
+    shifts
 
   });
 
@@ -78,17 +81,19 @@ const Shift = require('./shift');
  exports.update = asyncHandler(async (req, res, next) => { 
 
   let shift = await Shift.findById(req.params.id);
-  let message;
+ 
+  shift = await Shift.findByIdAndUpdate(req.params.id, req.body, { new: true }), 
 
-  if(shift.active) {
-    message = 'Shift is active'
-  } else {
-    message = 'Shift is NOT active'
-  }
+  // if(shift.active) {
+  //   message = 'Shift is active'
+  // } else {
+  //   message = 'Shift is NOT active'
+  // }
 
   res.status(200).json({
     success: true,    
-    message,
+    message: "shift updated",
+    shift
   });
 
 });
