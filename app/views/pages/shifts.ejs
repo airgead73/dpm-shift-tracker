@@ -1,0 +1,20 @@
+<%- include ('../partials/head') %>
+  <%- include ('../partials/header') %>
+
+
+    <h2>shift dashboard</h2>
+
+    <ul>
+      <% shifts.forEach((item)=> { %>
+
+        <li>
+          <p><a href="/shifts/<%= item.id %>">
+              <%= item.date_formatted %>
+            </a> | <a href="/shifts/<%= item.id %>/update">update</a> </p>
+        </li>
+
+        <% }) %>
+    </ul>
+
+
+    <%- include('../partials/foot') %>
