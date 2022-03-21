@@ -35,8 +35,6 @@ const shiftSchema = mongoose.Schema({
 shiftSchema.set('toObject', {virtuals: true});
 shiftSchema.set('toJSON', {virtuals: true});
 
-shiftSchema.virtual('date_formated', )
-
 shiftSchema.virtual('date_formatted').get(function() {
 
   return format(this.date, 'MMMM d, yyyy');

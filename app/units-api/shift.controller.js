@@ -77,62 +77,19 @@ const Shift = require('./shift');
 
  exports.update = asyncHandler(async (req, res, next) => { 
 
-  // check validation results
-
-  const { success, errors } = res.validation_results;  
-
-  if(!success) {
-    return res.status(400).json({
-      success: false,
-      validation_results: errors
-    });
-  }
-
-  // if passes validation, check if shift exists
-
   let shift = await Shift.findById(req.params.id);
+  let message;
 
-  if(!shift) {
-
-    return res.status(404).json({
-      success: false,
-      message: "This shift does not exist"
-    });
-
-  
-  } else if(shift.active) {
-
-    // if shift exists and is ACTIVE, add new items to current items, then update
-
-    const { items: newItems } = req.body;
-    const reqBody = {...req.body }
-    reqBody.items = parsInt(shift.items) + parseInt(newItems);
-    const activeShift = await Shift.findByIdAndUpdate(req.params.id, reqBody, { new: true });
-
-    return res.status(200).json({
-      success: true,    
-      message: `Shift has been updated: ${activeShift.date_formatted}.`,
-      shift: activeShift
-    });
-
+  if(shift.active) {
+    message = 'Shift is active'
   } else {
-
-    // if shift exists and is INACTIVE, update as normal
-
-    shift = await Shift.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    
-    return res.status(200).json({
-      success: true,    
-      message: `Shift has been updated: ${shift.date_formatted}.`,
-      shift
-    });
-
+    message = 'Shift is NOT active'
   }
 
-
-
-
-
+  res.status(200).json({
+    success: true,    
+    message,
+  });
 
 });
 
@@ -148,7 +105,6 @@ const Shift = require('./shift');
   res.status(200).json({
     success: true,    
     message: 'DELETE: delete a shift',
-
   });
 
 });
