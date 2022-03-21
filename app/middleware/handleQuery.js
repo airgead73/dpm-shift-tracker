@@ -29,7 +29,7 @@ const handleQuery = ($model) => async (req, res, next) => {
     const sortBy = req.query.sort.split(',').join(' ');
     query = query.sort(sortBy)
   } else {
-    query = query.sort('-createdAt')
+    query = query.sort('-date')
   }
 
   const results = await query;

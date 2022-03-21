@@ -64,9 +64,21 @@ const Shift = require('./shift');
 
  exports.detail = asyncHandler(async (req, res, next) => { 
 
+  // check if shift exists
+
+  let shift = await Shift.findById(req.params.id);
+
+  if(!shift) {
+    return res.status(404).json({
+      success: false,    
+      message: "Shift not found",
+    });    
+  }  
+
   res.status(201).json({
     success: true,    
     message: 'GET: read one shift',
+    shift
 
   });
 
@@ -80,15 +92,29 @@ const Shift = require('./shift');
 
  exports.update = asyncHandler(async (req, res, next) => { 
 
-  let shift = await Shift.findById(req.params.id);
- 
-  shift = await Shift.findByIdAndUpdate(req.params.id, req.body, { new: true }), 
+  // check if shift exists
 
-  // if(shift.active) {
-  //   message = 'Shift is active'
-  // } else {
-  //   message = 'Shift is NOT active'
-  // }
+  let shift = await Shift.findById(req.params.id);
+
+  if(!shift) {
+    return res.status(404).json({
+      success: false,    
+      message: "Shift not found",
+    });    
+  }
+
+  // handle adding items if shift is active
+
+  let reqBody = {...req.body}
+
+  const { items } = reqBody;
+  const { active } = shift;
+
+  if(active && items ) {
+    reqBody.items = parseInt(shift.items) + parseInt(items);   
+  }
+ 
+  shift = await Shift.findByIdAndUpdate(req.params.id, reqBody, { new: true }), 
 
   res.status(200).json({
     success: true,    
@@ -105,7 +131,6 @@ const Shift = require('./shift');
  * */
 
  exports.remove = asyncHandler(async (req, res, next) => { 
-
  
   res.status(200).json({
     success: true,    
