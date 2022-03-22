@@ -1,10 +1,14 @@
 const handleResponse = ($data) => {
 
-  const { success, message } = $data;
+  const { success, message, relocateTo } = $data;
 
   alert(message);
 
-  window.location.reload();
+  if(relocateTo) {
+    window.location.replace(relocateTo);
+  } else {
+    window.location.reload();
+  }  
 
 }
 
@@ -38,6 +42,8 @@ const fetchData = async ($form) => {
       body[property] = value;
       
     });
+
+    console.log(body);
     
     options.body = JSON.stringify(body);
     
@@ -47,13 +53,13 @@ const fetchData = async ($form) => {
   const data = await response.json();
   
 
+  console.log(data);
   return data;   
 
 }
 
 const initForms = ($forms) => {
-  $forms.forEach((form, index) => {
-    console.log(`form is initialized: ${index} `)
+  $forms.forEach((form) => {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       fetchData(event.target).then(data => handleResponse(data));

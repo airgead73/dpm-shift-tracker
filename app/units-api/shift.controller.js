@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const Shift = require('./shift');
+const { baseUrl } = require('../config/env');
 
 /**
  * @desc Create shift
@@ -83,7 +84,7 @@ const Shift = require('./shift');
 });
 
 /**
- * @desc Create shift
+ * @desc Update shift
  * @route PUT - /api/shifts/:id
  * @access Private
  * */
@@ -123,7 +124,7 @@ const Shift = require('./shift');
 });
 
 /**
- * @desc Create shift
+ * @desc End shift
  * @route PUT - /api/shifts/:id/end
  * @access Private
  * */
@@ -137,18 +138,23 @@ exports.end = asyncHandler(async (req, res, next) => {
     if(!shift) {
       return res.status(404).json({
         success: false,    
-        message: "Shift not found",
+        message: "Shift not found"
+        
       });    
     }
 
     shift = await Shift.findByIdAndUpdate(req.params.id, {$set: { active: false }}, { new: true });
 
-    res.status(200).redirect('/');
+    return res.status(200).json({
+      success: true,    
+      message: "Shift has ended",
+      relocateTo: `${baseUrl}/shifts/${shift.id}`
+    });
 
 });
 
 /**
- * @desc Create shift
+ * @desc Remove shift
  * @route DELETE - /api/shifts/:id
  * @access Private
  * */
