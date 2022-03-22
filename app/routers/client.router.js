@@ -1,8 +1,9 @@
 const { Router } = require('express');
 const clientRouter = Router();
 const { checkAuthClient } = require('../middleware');
-const { shiftRouter } = require('../units-client');
+const { landingRouter, shiftRouter } = require('../units-client');
 
-clientRouter.use('/', shiftRouter);
+clientRouter.use('/', landingRouter);
+clientRouter.use('/shifts', shiftRouter);
 
 module.exports = clientRouter;
