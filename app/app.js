@@ -17,7 +17,7 @@ const xss = require('xss-clean');
  */
 
 const { handleError } = require('./middleware');
-const { authConfig, connectDB, helmentPolicies, limiter, sessionConfig } = require('./config');
+const { authConfig, connectDB, helmetPolicies, limiter, sessionConfig } = require('./config');
 const { isDev } = require('./config/env');
 const { apiRouter, clientRouter } = require('./routers');
 
@@ -32,7 +32,7 @@ const { apiRouter, clientRouter } = require('./routers');
  * security
  */
 app.use(helmet());
-app.use(helmet.contentSecurityPolicy(helmentPolicies));
+app.use(helmet.contentSecurityPolicy(helmetPolicies));
 app.use(xss());
 app.use(hpp());
 app.use(cors());
