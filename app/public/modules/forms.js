@@ -3,8 +3,14 @@ const handleResponse = ($data) => {
   const { success, message, relocateTo } = $data;
 
   alert(message);
+
+  if(relocateTo) {
+    window.location.replace(relocateTo); 
+  } else {
+    window.location.reload();
+  }
  
-  window.location.reload(); 
+  
 
 }
 
