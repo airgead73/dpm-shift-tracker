@@ -7,20 +7,19 @@ const { getActive } = require('./shift.services');
  * @access Private
  */
 
- exports.landing = asyncHandler(async (req, res, next) => {
+ exports.dashboard = asyncHandler(async (req, res, next) => {
 
-  const activeShift = await getActive();
-  const renderPath = activeShift === null ? 'pages/shifts-add' : 'pages/shifts-detail';
-  const mainClass = activeShift === null ? 'main--new' : 'main--current';
+  const { success, count, data: shifts } = res.results;
 
   return res
     .status(200)
-    .render(renderPath, {
-      success: true,
+    .render('pages/shifts', {
+      success,
+      count,
+      shifts,
       title: "DPM shift tracker",
-      landing: true,
-      main: mainClass,
-      shift: activeShift
+      main: 'main--shifts'
+
     });
     
 });

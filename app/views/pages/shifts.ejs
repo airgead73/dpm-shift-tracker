@@ -10,7 +10,8 @@
         <li>
           <p><a href="/shifts/<%= item.id %>">
               <%= item.date_formatted %>
-            </a> | <a href="/shifts/<%= item.id %>/update">update</a> </p>
+            </a> <a class="btmn btn-outline-primary" href="/shifts/<%= item.id %>/update">update</a> <button
+              type="button" class="btn btn-secondary">delete</button></p>
         </li>
 
         <% }) %>
