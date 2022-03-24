@@ -9,7 +9,7 @@ const handleResponse = ($data) => {
   } else {
     window.location.reload();
   }
-  
+
 }
 
 const fetchData = async ($form) => {
@@ -42,18 +42,14 @@ const fetchData = async ($form) => {
       body[property] = value;
       
     });
-
-    console.log(body);
     
     options.body = JSON.stringify(body);
     
   }
 
   const response = await fetch(attrs.action, options);
-  const data = await response.json();
-  
+  const data = await response.json();  
 
-  console.log(data);
   return data;   
 
 }

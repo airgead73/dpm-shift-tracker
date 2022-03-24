@@ -21,8 +21,8 @@
         <div class="card-body">
 
           <% if(landing) { %>
-            <form class="form mb-5" id="form_shifts_update" action="/api/shifts/<%= shift.id %>?fields=items"
-              method="PUT" enctype="application/json" target="/">
+            <form class="form mb-5" id="form_shifts_update" action="/api/shifts/<%= shift.id %>" method="PUT"
+              enctype="application/json" target="/">
 
               <div class="input-group">
                 <input type="number" class="form-control" name="items">
@@ -38,6 +38,28 @@
               </div>
             </form>
             <% } %>
+
+              <% if(!landing && !shift.comments) { %>
+                <form action="/api/shifts/<%= shift.id %>" method="PUT" class="form mt-3" id="forms_shifts_comments"
+                  enctype="application/json">
+                  <div class="mb-3">
+                    <label for="comments" class="form-label">add comments</label>
+                    <textarea class="form-control" name="comments" id="comments" rows="3"></textarea>
+
+                  </div>
+                  <button class="btn btn-outline-secondary" type="submit">add</button>
+                </form>
+                <% } %>
+
+                  <% if(!landing && shift.comments) { %>
+
+                    <h5 class="card-title">comments</h5>
+
+                    <p>
+                      <%= shift.comments %>
+                    </p>
+
+                    <% } %>
 
         </div>
       </article>
