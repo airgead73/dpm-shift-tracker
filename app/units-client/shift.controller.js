@@ -37,7 +37,7 @@ const Shift = require('../units-api/shift')
   if(!shift) {
     return res
       .status(404)
-      .render('page/error', {
+      .render('pages/error', {
         success: false,
         status: 404,
         message: "This shift has not been found."
@@ -51,7 +51,7 @@ const Shift = require('../units-api/shift')
       shift: shift,
       title: "DPM shift tracker",
       main: 'main--detail',
-      detail: true
+      landing: false
 
     });
     
