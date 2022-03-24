@@ -1,7 +1,51 @@
 <%- include ('../partials/head') %>
   <%- include ('../partials/header') %>
 
+  <main class="main main--list">
 
+    <h2>shift dashboard</h2>
+
+    <% shifts.forEach(item => { %>
+
+      <div class="card card--list">
+        <div class="card-header bg-dark text-light d-flex justify-content-between">
+          <p><a href="/shifts/<%= item.id %>"><%= item.date_formatted %></a></p>
+          <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <a type="button" class="btn btn-secondary">update</a>
+            <a type="button" class="btn btn-secondary">delete</a>
+          </div> 
+        </div>
+        <div class="card-body row mt-1">
+          <ol class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">rate</div>
+              </div>
+              <span class="badge bg-secondary rounded-pill"><%= item.rate %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">items</div>
+              </div>
+              <span class="badge bg-secondary rounded-pill"><%= item.items %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">comments</div>
+                <p>
+                  <%= item.comments %>
+                </p>
+              </div>
+              
+            </li>
+          </ol>
+      </div>
+      </div> 
+
+    <% }); %>
+
+
+  </main>
 
 
     <%- include('../partials/foot') %>
