@@ -1,3 +1,5 @@
+import { confirmFetch } from './utils.js';
+
 const handleResponse = ($data) => {
   const { success, message, relocateTo } = $data;
 
@@ -12,11 +14,18 @@ const handleResponse = ($data) => {
 }
 
 const fetchData = async ($btn) => {
+
+  // confirm
+
+  const isConfirmed = confirmFetch($btn.getAttribute('data-confirm'));
+
+  if(!isConfirmed) return;
+
+  // if confirmed, continue
+
   const shift = $btn.getAttribute('data-shift');
   const method = $btn.getAttribute('data-method');
-  const url = `/api/shifts/${shift}`;
-
-  console.log(shift);
+  const url = `/api/shifts/${shift}`;  
 
   const options = {
     method,
@@ -29,9 +38,7 @@ const fetchData = async ($btn) => {
   const response = await fetch(url, options);
   const data = await response.json();
 
-  console.log(data);
-
-  return data;
+  return handleResponse(data);
 
 }
 
@@ -39,8 +46,8 @@ const initBtns = ($btns) => {
   $btns.forEach((btn) => {
 
     btn.addEventListener('click', (event) => {
-      event.preventDefault();      
-      fetchData(event.target).then(data => handleResponse(data));
+      event.preventDefault(); 
+      fetchData(event.target);      
     });
 
   });
