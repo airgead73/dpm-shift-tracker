@@ -9,9 +9,7 @@ const handleResponse = ($data) => {
   } else {
     window.location.reload();
   }
- 
   
-
 }
 
 const fetchData = async ($form) => {

@@ -160,10 +160,25 @@ exports.end = asyncHandler(async (req, res, next) => {
  * */
 
  exports.remove = asyncHandler(async (req, res, next) => { 
+
+  // check if shift exists
+
+  let shift = await Shift.findById(req.params.id);
+
+  if(!shift) {
+    return res.status(404).json({
+      success: false,    
+      message: "Shift not found",
+    });    
+  } 
+
+  // remove shift
+  
+  shift.remove();
  
   res.status(200).json({
     success: true,    
-    message: 'DELETE: delete a shift',
+    message: `Shift has been deleted: ${shift.date_formatted}`,
   });
 
 });
