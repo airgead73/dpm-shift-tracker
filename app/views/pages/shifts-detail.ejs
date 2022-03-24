@@ -1,68 +1,6 @@
 <%- include ('../partials/head') %>
   <%- include ('../partials/header') %>
 
-    <section class="section section--current">
-      <article class="card">
-        <div class="card-header d-flex justify-content-between">
-          <%= shift.date_formatted %>
-
-            <span class="badge bg-secondary">
-              <b>items:</b>
-              <%= shift.items %>
-            </span>
-            <% if(!shift.active) { %>
-              <span class="badge bg-secondary">
-                <b>rate:</b>
-                <%= shift.rate %>
-              </span>
-              <% } %>
-
-        </div>
-        <div class="card-body">
-
-          <% if(landing) { %>
-            <form class="form mb-5" id="form_shifts_update" action="/api/shifts/<%= shift.id %>" method="PUT"
-              enctype="application/json" target="/">
-
-              <div class="input-group">
-                <input type="number" class="form-control" name="items">
-                <button class="btn btn-outline-secondary" type="submit">add items</button>
-              </div>
-
-            </form>
-            <form class="form mt-3" id="form_shifts_rate" action="/api/shifts/<%= shift.id %>/end" method="PUT"
-              enctype="application/json" target="/">
-              <input type="hidden" name="active" value="false">
-              <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="submit">end shift</button>
-              </div>
-            </form>
-            <% } %>
-
-              <% if(!landing && !shift.comments) { %>
-                <form action="/api/shifts/<%= shift.id %>" method="PUT" class="form mt-3" id="forms_shifts_comments"
-                  enctype="application/json">
-                  <div class="mb-3">
-                    <label for="comments" class="form-label">add comments</label>
-                    <textarea class="form-control" name="comments" id="comments" rows="3"></textarea>
-
-                  </div>
-                  <button class="btn btn-outline-secondary" type="submit">add</button>
-                </form>
-                <% } %>
-
-                  <% if(!landing && shift.comments) { %>
-
-                    <h5 class="card-title">comments</h5>
-
-                    <p>
-                      <%= shift.comments %>
-                    </p>
-
-                    <% } %>
-
-        </div>
-      </article>
-    </section>
+ 
 
     <%- include('../partials/foot') %>

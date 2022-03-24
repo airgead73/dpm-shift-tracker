@@ -1,24 +1,7 @@
 <%- include ('../partials/head') %>
   <%- include ('../partials/header') %>
 
-    <section class="section section--new">
-      <form class="form card" class="form" id="form_shifts_post" action="/api/shifts" method="POST"
-        enctype="application/json" target="/">
-        <div class="card-header">
-          start new shift
-        </div>
-        <div class="card-body row g-3">
-          <div class="col-md-8">
-            <input type="datetime-local" class="form-control" id="date" name="date">
-          </div>
-          <div class="col-md-4">
-            <input type="number" class="form-control" id="floor" name="floor" placeholder="floor">
-          </div>
-          <div class="col-md 12">
-            <button class="btn btn-outline-secondary" type="submit">start</button>
-          </div>
-        </div>
-      </form>
-    </section>
+
+  
 
     <%- include('../partials/foot') %>
