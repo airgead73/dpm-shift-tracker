@@ -18,7 +18,7 @@ body {
 .card--update,
 .card--detail {
   width: 95%;
-  max-width: 480px;
+  min-width: 450px;
 }
 
 .main--list {
