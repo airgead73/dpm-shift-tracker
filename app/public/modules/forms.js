@@ -48,7 +48,9 @@ const fetchData = async ($form) => {
   }
 
   const response = await fetch(attrs.action, options);
-  const data = await response.json();  
+  const data = await response.json();
+  
+  data.relocateTo = $form.getAttribute('target') || false;
 
   return data;   
 

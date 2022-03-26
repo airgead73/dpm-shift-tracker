@@ -14,7 +14,7 @@ const { getActive } = require('./shift.services');
   if(activeShift === null) {
     return res.status(200).redirect('/shifts/add')
   } else {
-    return res.status(200).redirect(`shifts/${activeShift.id}/update?update=items`)
+    return res.status(200).redirect(`/shifts/${activeShift.id}/update?update=items`)
   }
     
 });

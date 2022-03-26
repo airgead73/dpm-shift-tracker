@@ -96,7 +96,7 @@ const Shift = require('../units-api/shift')
 
   let { update } = req.query;
 
-  const items_only = update === items; 
+  const items_only = update === "items"; 
 
   return res
     .status(200)
