@@ -1,39 +1,39 @@
 <%- include ('../partials/head') %>
   <%- include ('../partials/header') %>
 
-  <main class="main main--list">
-
     <h2>shift dashboard</h2>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <td>date</td>
-          <td>rate</td>
-          <td>items</td>
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <% shifts.forEach(item => { %>
+    <% if(shifts.length) { %>
 
-          <tr id="<%= item.id %>">
-            <td><a href="/shifts/<%= item.id %>"><%= item.date_formatted %></a></td>
-            <td><%= item.rate %></td>
-            <td><%= item.items %></td>
-            <td><button class="btn btn-link">delete</button></td>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>date</td>
+            <td>rate</td>
+            <td>items</td>
+            <td></td>
           </tr>
-
-          <% }); %>
-
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% shifts.forEach(item => { %>
   
+            <tr id="<%= item.id %>">
+              <td><a href="/shifts/<%= item.id %>"><%= item.date_formatted %></a></td>
+              <td><%= item.rate %></td>
+              <td><%= item.items %></td>
+              <td><button class="btn btn-link">delete</button></td>
+            </tr>
+  
+            <% }); %>
+  
+        </tbody>
+      </table>      
+
+   <% } else { %>
+
+    <p>no shifts</p>
+
+  <% } %>
 
 
-
-
-  </main>
-
-
-    <%- include('../partials/foot') %>
+<%- include('../partials/foot') %>
