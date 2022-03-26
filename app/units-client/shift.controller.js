@@ -25,6 +25,23 @@ const Shift = require('../units-api/shift')
 });
 
 /**
+ * @desc view shift add page
+ * @route GET = /add
+ * @access Private
+ */
+
+ exports.add = asyncHandler(async (req, res, next) => {
+
+  return res
+    .status(200)
+    .render('pages/shifts-add', {
+      title: "DPM shift tracker",
+      main: 'main--add'
+    });
+    
+});
+
+/**
  * @desc view shift detail page
  * @route GET = /:id
  * @access Private
@@ -58,8 +75,8 @@ const Shift = require('../units-api/shift')
 });
 
 /**
- * @desc view shift detail page
- * @route GET = /:id
+ * @desc view shift update page
+ * @route GET = /:id/update
  * @access Private
  */
 
@@ -74,8 +91,12 @@ const Shift = require('../units-api/shift')
         success: false,
         status: 404,
         message: "This shift has not been found."
-      });
+    });
   }
+
+  let { update } = req.query;
+
+  const items_only = update === items; 
 
   return res
     .status(200)
@@ -84,8 +105,7 @@ const Shift = require('../units-api/shift')
       shift: shift,
       title: "DPM shift tracker",
       main: 'main--update',
-      landing: false
-
+      items_only
     });
     
 });
