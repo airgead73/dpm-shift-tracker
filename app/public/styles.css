@@ -7,28 +7,20 @@ body {
 .main--update,
 .main--detail {
   height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  position: relative;
 }
 
 .card--add,
 .card--update,
 .card--detail {
-  width: 95%;
-  min-width: 450px;
-}
-
-.main--list {
-  padding-top: 30px;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-.card--list {
-  margin-bottom: 20px;
+  margin: 0;
+  position: absolute;
+  width: 98%;
+  min-width: 300px;
+  max-width: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
