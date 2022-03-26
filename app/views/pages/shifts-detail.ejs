@@ -1,35 +1,6 @@
 <%- include ('../partials/head') %>
   <%- include ('../partials/header') %>
 
-  <div class="card card--detail">
-    <div class="card-header d-flex justify-content-between">
-      <p><%= shift.date_formatted %></p>
-      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-        <a href="">update</a>
-      </div> 
-    </div>
-    <div class="card-body row mt-1">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">rate</div>
-          </div>
-          <span class="badge bg-secondary rounded-pill"><%= shift.rate %></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">items</div>
-          </div>
-          <span class="badge bg-secondary rounded-pill"><%= shift.items %></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">comments</div>
-            <p><%= shift.comments %></p>           
-          </div>
-        </li>
-      </ul>
-  </div>   
- 
+  <h2>shift detail</h2>
 
     <%- include('../partials/foot') %>
