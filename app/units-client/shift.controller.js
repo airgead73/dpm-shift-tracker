@@ -56,3 +56,36 @@ const Shift = require('../units-api/shift')
     });
     
 });
+
+/**
+ * @desc view shift detail page
+ * @route GET = /:id
+ * @access Private
+ */
+
+ exports.update = asyncHandler(async (req, res, next) => {
+
+  let shift = await Shift.findById(req.params.id);
+
+  if(!shift) {
+    return res
+      .status(404)
+      .render('pages/error', {
+        success: false,
+        status: 404,
+        message: "This shift has not been found."
+      });
+  }
+
+  return res
+    .status(200)
+    .render('pages/shifts-update', {
+      success: true,
+      shift: shift,
+      title: "DPM shift tracker",
+      main: 'main--update',
+      landing: false
+
+    });
+    
+});
