@@ -5,39 +5,30 @@
 
     <h2>shift dashboard</h2>
 
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>date</td>
+          <td>rate</td>
+          <td>items</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% shifts.forEach(item => { %>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+          <tr id="<%= item.id %>">
+            <td><a href="/shifts/<%= item.id %>"><%= item.date_formatted %></a></td>
+            <td><%= item.rate %></td>
+            <td><%= item.items %></td>
+            <td><button class="btn btn-link">delete</button></td>
+          </tr>
 
-    <section class="accordion accordion-flush" id="list_shifts">
+          <% }); %>
 
-      <% shifts.forEach(item => { %>
-
-
-
-      <% }); %>
-
-    </section>
+      </tbody>
+    </table>
+  
 
 
 
