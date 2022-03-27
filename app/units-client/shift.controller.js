@@ -56,7 +56,7 @@ exports.update = asyncHandler(async (req, res, next) => {
     .status(200)
     .json({ 
       success: true, 
-      message: "view create shift"
+      message: "view update shift"
     });
 });
 
