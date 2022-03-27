@@ -6,7 +6,7 @@ const asyncHandler = require('express-async-handler');
  * @access Private
  * */
 
-exports.create = asyncHandler(async (req, res, next) => {
+exports.add = asyncHandler(async (req, res, next) => {
   return res
     .status(200)
     .json({ 
@@ -14,8 +14,6 @@ exports.create = asyncHandler(async (req, res, next) => {
       message: "view create shift"
     });
 });
-
-const asyncHandler = require('express-async-handler');
 
 /**
  * @desc Read shifts view
@@ -32,8 +30,6 @@ exports.read = asyncHandler(async (req, res, next) => {
     });
 });
 
-const asyncHandler = require('express-async-handler');
-
 /**
  * @desc Read detail view
  * @route GET - /:id
@@ -48,8 +44,6 @@ exports.detail = asyncHandler(async (req, res, next) => {
       message: "view shift detail"
     });
 });
-
-const asyncHandler = require('express-async-handler');
 
 /**
  * @desc Update shift view

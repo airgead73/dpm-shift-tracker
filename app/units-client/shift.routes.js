@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const shiftRouter = Router();
-const Shift = require('../units-api/shift');
 
 // controllers
 const { add, read, detail, update, remove } = require('./shift.controller');
