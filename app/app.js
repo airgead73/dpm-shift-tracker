@@ -19,7 +19,7 @@ const xss = require('xss-clean');
 const { handleError } = require('./middleware');
 const { authConfig, connectDB, helmetPolicies, limiter, sessionConfig } = require('./config');
 const { isDev } = require('./config/env');
-const { apiRouter, clientRouter } = require('./routers');
+const { apiRouter } = require('./routers');
 
 /**
  * app activation
@@ -68,7 +68,6 @@ app.set('view engine', 'ejs');
  */
 
 app.use('/api', apiRouter);
-app.use('/', clientRouter);
 
 /**
  * error handling
