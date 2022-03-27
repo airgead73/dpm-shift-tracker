@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const Shift = require('../units-api/shift');
 
 /**
  * @desc Create shift view
@@ -22,11 +23,15 @@ exports.add = asyncHandler(async (req, res, next) => {
  * */
 
 exports.read = asyncHandler(async (req, res, next) => {
+
+  const { success, count, data: shifts } = res.results
+
   return res
     .status(200)
     .json({ 
-      success: true, 
-      message: "view read shifts"
+      success, 
+      count,
+      shifts
     });
 });
 
