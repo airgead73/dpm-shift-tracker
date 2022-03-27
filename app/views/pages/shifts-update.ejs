@@ -1,7 +1,43 @@
 <%- include ('../partials/head') %>
   <%- include ('../partials/header') %>
   
-  <h2>update <%= shift.formatted %></h2> 
+  <form method="PUT" action="/api/shifts/<% shift.id %>" enctype="application/json" class="form card card--update">
+    <div class="card-header bg-dark text-light">
+      <p><%= shift.date_formatted %></p>
+    </div>  
+    <div class="card-body row mt-1">
+      <div class="col-md-12">
+        <input type="number" class="form-control" id="items" name="items" placeholder="add items">
+      </div> 
+      <!-- if updating all fields-->
+      <% if(fields !== "items") { %>
+
+        <div class="col-md-12">
+          <input type="number" class="form-control" id="floor" name="floor" placeholder="add floor">
+        </div> 
+        
+        <div class="col-md-12">
+          <input type="number" class="form-control" id="hours" name="hours" placeholder="add hours">
+        </div> 
+
+        <div class="col-md-12">
+          <textarea class="form-control" id="comments" name="comments" placeholder="add comments"></textarea>
+        </div> 
+
+      <% } %>
+
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-outline-secondary mb-2">
+          <% if(fields !== "items") { %>
+            <span>update</span>
+          <% }  else { %> 
+            <span>update</span>
+            <% } %>
+        </button>
+      </div>
+          
+    </div>  
+    </form>
 
   <% if(fields === "items") { %>
     <p>update only fields</p>

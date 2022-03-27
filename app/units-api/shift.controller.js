@@ -35,7 +35,7 @@ const Shift = require('./shift');
 });
 
 /**
- * @desc Create shift
+ * @desc Read shifts
  * @route GET - /api/shifts
  * @access Private
  * */
@@ -55,7 +55,7 @@ const Shift = require('./shift');
 });
 
 /**
- * @desc Create shift
+ * @desc Read shift detail
  * @route GET - /api/shifts/:id
  * @access Private
  * */

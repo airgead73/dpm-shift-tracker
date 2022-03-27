@@ -112,14 +112,6 @@ exports.update = asyncHandler(async (req, res, next) => {
     });    
   }
 
-  // return res
-  //   .status(200)
-  //   .json({ 
-  //     success: true, 
-  //     message: `View: update shift ${shift.date_formatted}.`,
-  //     fields
-  //   });
-
   return res
     .status(200)
     .render('pages/shifts-update', {
