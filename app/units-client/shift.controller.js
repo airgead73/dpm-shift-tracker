@@ -1,6 +1,27 @@
 const asyncHandler = require('express-async-handler');
 const Shift = require('../units-api/shift');
-const { isActiveShift } = require('./services');
+
+/**
+ * @desc Shifts landing view
+ * @route GET - /
+ * @access Private
+ * */
+
+ exports.landing = asyncHandler(async (req, res, next) => {
+
+  let shift = await Shift.findOne({ active: true });
+
+  if(shift) {
+    return res
+      .status(202)
+      .redirect(`/${shift.id}/update?fields=items`)
+  } else {
+    return res
+      .status(202)
+      .redirect('/add')
+  }
+
+});
 
 /**
  * @desc Create shift view
@@ -15,44 +36,6 @@ exports.add = asyncHandler(async (req, res, next) => {
       success: true, 
       message: "view create shift"
     });
-});
-
-/**
- * @desc Shifts landing view
- * @route GET - /
- * @access Private
- * */
-
-exports.landing = asyncHandler(async (req, res, next) => {
-
-  let shift = await Shift.findOne({ active: true });
-
-  if(shift) {
-    return res
-      .status(202)
-      .redirect(`/${shift.id}/update?fields=items`)
-  } else {
-    return res
-      .status(202)
-      .redirect('/add')
-  }
-
-  // if(isActive) {
-  //   return res
-  //     .status(202)
-  //     .json({
-  //       success: true,
-  //       message: "There is one active shift."
-  //     });
-  // } else {
-  //   return res
-  //   .status(202)
-  //   .json({
-  //     success: true,
-  //     message: "There is NO active shift."
-  //   });   
-  // }
-
 });
 
 /**
