@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler');
 const Shift = require('./shift');
-const { baseUrl } = require('../config/env');
 
 /**
  * @desc Create shift
