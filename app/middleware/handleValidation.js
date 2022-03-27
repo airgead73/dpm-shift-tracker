@@ -1,7 +1,6 @@
 const { body, validationResult } = require('express-validator');
 
 const validationRules = ($method) => {
-  console.log('validation rules');
 
   switch($method) {
     case 'createShift':
