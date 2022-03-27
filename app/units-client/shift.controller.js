@@ -25,23 +25,33 @@ exports.add = asyncHandler(async (req, res, next) => {
 
 exports.landing = asyncHandler(async (req, res, next) => {
 
-  const isActive = isActiveShift();
+  let shift = await Shift.findOne({ active: true });
 
-  if(isActive) {
+  if(shift) {
     return res
       .status(202)
-      .json({
-        success: true,
-        message: "There is one active shift."
-      });
+      .redirect(`/${shift.id}/update?fields=items`)
   } else {
     return res
-    .status(202)
-    .json({
-      success: true,
-      message: "There is NO active shift."
-    });   
+      .status(202)
+      .redirect('/add')
   }
+
+  // if(isActive) {
+  //   return res
+  //     .status(202)
+  //     .json({
+  //       success: true,
+  //       message: "There is one active shift."
+  //     });
+  // } else {
+  //   return res
+  //   .status(202)
+  //   .json({
+  //     success: true,
+  //     message: "There is NO active shift."
+  //   });   
+  // }
 
 });
 
@@ -101,6 +111,8 @@ exports.detail = asyncHandler(async (req, res, next) => {
 exports.update = asyncHandler(async (req, res, next) => {
 
   let shift = await Shift.findById(req.params.id);
+  
+  const { fields } = req.query;
 
   if(!shift) {
     return res
@@ -115,7 +127,8 @@ exports.update = asyncHandler(async (req, res, next) => {
     .status(200)
     .json({ 
       success: true, 
-      message: `View: update shift ${shift.date_formatted}.`
+      message: `View: update shift ${shift.date_formatted}.`,
+      fields
     });
 });
 
