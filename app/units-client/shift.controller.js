@@ -42,11 +42,24 @@ exports.read = asyncHandler(async (req, res, next) => {
  * */
 
 exports.detail = asyncHandler(async (req, res, next) => {
+
+  let shift = await Shift.findById(req.params.id);
+
+  if(!shift) {
+    return res
+    .status(404)
+    .json({ 
+      success: false, 
+      message: "Shift not found."
+    });    
+  }
+
   return res
     .status(200)
     .json({ 
       success: true, 
-      message: "view shift detail"
+      message: `View: read shift ${shift.date_formatted}.`,
+      shift
     });
 });
 
@@ -57,11 +70,23 @@ exports.detail = asyncHandler(async (req, res, next) => {
  * */
 
 exports.update = asyncHandler(async (req, res, next) => {
+
+  let shift = await Shift.findById(req.params.id);
+
+  if(!shift) {
+    return res
+    .status(404)
+    .json({ 
+      success: false, 
+      message: "Shift not found."
+    });    
+  }
+
   return res
     .status(200)
     .json({ 
       success: true, 
-      message: "view update shift"
+      message: `View: update shift ${shift.date_formatted}.`
     });
 });
 
@@ -72,10 +97,22 @@ exports.update = asyncHandler(async (req, res, next) => {
  * */
 
  exports.remove = asyncHandler(async (req, res, next) => {
+
+  let shift = await Shift.findById(req.params.id);
+
+  if(!shift) {
+    return res
+    .status(404)
+    .json({ 
+      success: false, 
+      message: "Shift not found."
+    });    
+  }
+
   return res
     .status(200)
     .json({ 
       success: true, 
-      message: "view delete shift"
+      message: `View: delete shift ${shift.date_formatted}.`
     });
 });
