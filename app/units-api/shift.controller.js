@@ -124,36 +124,6 @@ const { baseUrl } = require('../config/env');
 });
 
 /**
- * @desc End shift
- * @route PUT - /api/shifts/:id/end
- * @access Private
- * */
-
-exports.end = asyncHandler(async (req, res, next) => {
-
-    // check if shift exists
-
-    let shift = await Shift.findById(req.params.id);
-
-    if(!shift) {
-      return res.status(404).json({
-        success: false,    
-        message: "Shift not found"
-        
-      });    
-    }
-
-    shift = await Shift.findByIdAndUpdate(req.params.id, {$set: { active: false }}, { new: true });
-
-    return res.status(200).json({
-      success: true,    
-      message: "Shift has ended",
-      relocateTo: `${baseUrl}/shifts/${shift.id}`
-    });
-
-});
-
-/**
  * @desc Remove shift
  * @route DELETE - /api/shifts/:id
  * @access Private
