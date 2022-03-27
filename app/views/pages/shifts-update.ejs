@@ -1,6 +1,12 @@
 <%- include ('../partials/head') %>
   <%- include ('../partials/header') %>
   
-  <h2>update shift</h2>   
+  <h2>update <%= shift.formatted %></h2> 
+
+  <% if(fields === "items") { %>
+    <p>update only fields</p>
+  <% } else { %>
+    <p>update any field</p>
+  <% } %>
 
     <%- include('../partials/foot') %>

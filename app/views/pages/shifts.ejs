@@ -1,0 +1,39 @@
+<%- include ('../partials/head') %>
+  <%- include ('../partials/header') %>
+
+    <h2>shift dashboard</h2>
+
+    <% if(shifts.length) { %>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <td>date</td>
+            <td>rate</td>
+            <td>items</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% shifts.forEach(item => { %>
+  
+            <tr id="<%= item.id %>">
+              <td><a href="/shifts/<%= item.id %>"><%= item.date_formatted %></a></td>
+              <td><%= item.rate %></td>
+              <td><%= item.items %></td>
+              <td><button class="btn btn-link">delete</button></td>
+            </tr>
+  
+            <% }); %>
+  
+        </tbody>
+      </table>      
+
+   <% } else { %>
+
+    <p>no shifts</p>
+
+  <% } %>
+
+
+<%- include('../partials/foot') %>

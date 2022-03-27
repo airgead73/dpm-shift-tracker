@@ -10,7 +10,7 @@ const { handleQuery } = require('../middleware');
 
 // routes
 shiftRouter.route('/').get(landing);
-shiftRouter.route('/dashboard').get(handleQuery(Shift), dashboard);
+shiftRouter.route('/shifts').get(handleQuery(Shift), dashboard);
 shiftRouter.route('/add').get(add);
 shiftRouter.route('/:id').get(detail);
 shiftRouter.route('/:id/update').get(update);

@@ -30,12 +30,15 @@ const Shift = require('../units-api/shift');
  * */
 
 exports.add = asyncHandler(async (req, res, next) => {
+
   return res
     .status(200)
-    .json({ 
-      success: true, 
-      message: "view create shift"
+    .render('pages/shifts-add', {
+      success: true,
+      title: "add shift",
+      main: "main--add"
     });
+
 });
 
 /**
@@ -50,11 +53,14 @@ exports.dashboard = asyncHandler(async (req, res, next) => {
 
   return res
     .status(200)
-    .json({ 
-      success, 
+    .render('pages/shifts', {
+      success,
       count,
-      shifts
+      shifts,
+      title: "Shifts",
+      main: "main--shifts"
     });
+
 });
 
 /**
@@ -106,13 +112,25 @@ exports.update = asyncHandler(async (req, res, next) => {
     });    
   }
 
+  // return res
+  //   .status(200)
+  //   .json({ 
+  //     success: true, 
+  //     message: `View: update shift ${shift.date_formatted}.`,
+  //     fields
+  //   });
+
   return res
     .status(200)
-    .json({ 
-      success: true, 
-      message: `View: update shift ${shift.date_formatted}.`,
+    .render('pages/shifts-update', {
+      success: true,
+      shift: shift,
+      title: `Update ${shift.date_formatted}`,
+      main: "main--update",
       fields
     });
+
+
 });
 
 /**
