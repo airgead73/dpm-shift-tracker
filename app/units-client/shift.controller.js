@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const Shift = require('../units-api/shift');
+const { isActiveShift } = require('./services');
 
 /**
  * @desc Create shift view
@@ -17,14 +18,42 @@ exports.add = asyncHandler(async (req, res, next) => {
 });
 
 /**
- * @desc Read shifts view
+ * @desc Shifts landing view
  * @route GET - /
  * @access Private
  * */
 
-exports.read = asyncHandler(async (req, res, next) => {
+exports.landing = asyncHandler(async (req, res, next) => {
 
-  const { success, count, data: shifts } = res.results
+  const isActive = isActiveShift();
+
+  if(isActive) {
+    return res
+      .status(202)
+      .json({
+        success: true,
+        message: "There is one active shift."
+      });
+  } else {
+    return res
+    .status(202)
+    .json({
+      success: true,
+      message: "There is NO active shift."
+    });   
+  }
+
+});
+
+/**
+ * @desc Read shifts view
+ * @route GET - /dashboard
+ * @access Private
+ * */
+
+exports.dashboard = asyncHandler(async (req, res, next) => {
+
+  const { success, count, data: shifts } = res.results;
 
   return res
     .status(200)
