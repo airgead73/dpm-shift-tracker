@@ -4,6 +4,8 @@ const handleError = (err, req, res, next) => {
     error: true,
     message: err.message,
     status: statusCode,
+    name: err.name,
+    response: err.response || null,
     stack: process.env.NODE_ENV === 'production' ? null : err.stack
   }
 

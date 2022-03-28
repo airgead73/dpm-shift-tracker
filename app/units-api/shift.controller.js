@@ -43,7 +43,6 @@ const Shift = require('./shift');
  exports.read = asyncHandler(async (req, res, next) => { 
 
   const { success, count, data: shifts } = res.results;
-
  
   res.status(200).json({
     success,    
@@ -67,10 +66,10 @@ const Shift = require('./shift');
   let shift = await Shift.findById(req.params.id);
 
   if(!shift) {
-    return res.status(404).json({
-      success: false,    
-      message: "Shift not found",
-    });    
+    const error = new Error("Shift was not found.");
+    error.status = 404;
+    error.response = "json"
+    throw error;   
   }  
 
   res.status(201).json({
@@ -95,10 +94,10 @@ const Shift = require('./shift');
   let shift = await Shift.findById(req.params.id);
 
   if(!shift) {
-    return res.status(404).json({
-      success: false,    
-      message: "Shift not found",
-    });    
+    const error = new Error("Shift was not found.");
+    error.status = 404;
+    error.response = "json"
+    throw error;    
   }
 
   // handle adding items if shift is active
@@ -135,10 +134,10 @@ const Shift = require('./shift');
   let shift = await Shift.findById(req.params.id);
 
   if(!shift) {
-    return res.status(404).json({
-      success: false,    
-      message: "Shift not found",
-    });    
+    const error = new Error("Shift was not found.");
+    error.status = 404;
+    error.response = "json"
+    throw error;    
   } 
 
   // remove shift
@@ -152,34 +151,6 @@ const Shift = require('./shift');
 
 });
 
-/**
- * @desc End shift
- * @route PUT - /api/shifts/:id
- * @access Private
- * */
 
- exports.remove = asyncHandler(async (req, res, next) => { 
-
-  // check if shift exists
-
-  let shift = await Shift.findById(req.params.id);
-
-  if(!shift) {
-    return res.status(404).json({
-      success: false,    
-      message: "Shift not found",
-    });    
-  } 
-
-  // update shift
-  
-  shift = await Shift.findByIdAndUpdate(req.params.id, { active: false }, {new: true});
- 
-  res.status(200).json({
-    success: true,    
-    message: `Shift ${shift.date_formatted} has ended.`,
-  });
-
-});
 
 

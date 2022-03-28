@@ -74,15 +74,10 @@ exports.detail = asyncHandler(async (req, res, next) => {
   let shift = await Shift.findById(req.params.id);
 
   if(!shift) {
-    return res
-    .status(404)
-    .render('pages/error', {
-      success: true,
-      title: "Error 404",
-      main: "main--error",
-      message: "Shift could not be found.",
-      status: "404"
-    });    
+   const error = new Error("Shift was not found.");
+   error.status = 404;
+   error.response = "html"
+   throw error;
   }
 
   return res
@@ -105,17 +100,15 @@ exports.detail = asyncHandler(async (req, res, next) => {
 exports.update = asyncHandler(async (req, res, next) => {
 
   let shift = await Shift.findById(req.params.id);
-  
-  const { fields } = req.query;
 
   if(!shift) {
-    return res
-    .status(404)
-    .json({ 
-      success: false, 
-      message: "Shift not found."
-    });    
+    const error = new Error("Shift was not found.");
+    error.status = 404;
+    error.response = "html"
+    throw error;   
   }
+  
+  const { fields } = req.query;
 
   return res
     .status(200)
@@ -141,12 +134,10 @@ exports.update = asyncHandler(async (req, res, next) => {
   let shift = await Shift.findById(req.params.id);
 
   if(!shift) {
-    return res
-    .status(404)
-    .json({ 
-      success: false, 
-      message: "Shift not found."
-    });    
+    const error = new Error("Shift was not found.");
+    error.status = 404;
+    error.response = "html"
+    throw error;   
   }
 
   return res
