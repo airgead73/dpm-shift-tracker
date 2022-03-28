@@ -18,7 +18,7 @@
           <% shifts.forEach(item => { %>
   
             <tr id="<%= item.id %>">
-              <td><a href="/shifts/<%= item.id %>"><%= item.date_formatted %></a></td>
+              <td><a href="/<%= item.id %>"><%= item.date_formatted %></a></td>
               <td><%= item.rate %></td>
               <td><%= item.items %></td>
               <td><button class="btn btn-link btn-fetch" data-confirm="Delete <%= item.date_formatted %>? If yes, click 'ok'." data-action="/api/shifts/<%= item.id %>" data-method="DELETE">delete</button></td>

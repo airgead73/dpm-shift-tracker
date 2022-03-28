@@ -84,11 +84,13 @@ exports.detail = asyncHandler(async (req, res, next) => {
 
   return res
     .status(200)
-    .json({ 
-      success: true, 
-      message: `View: read shift ${shift.date_formatted}.`,
-      shift
+    .render('pages/shifts-detail', {
+      success: true,
+      shift: shift,
+      title: `${shift.date_formatted}`,
+      main: "main--detail"
     });
+
 });
 
 /**
