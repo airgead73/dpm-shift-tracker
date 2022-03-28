@@ -23,9 +23,8 @@ const fetchData = async ($btn) => {
 
   // if confirmed, continue
 
-  const shift = $btn.getAttribute('data-shift');
-  const method = $btn.getAttribute('data-method');
-  const url = `/api/shifts/${shift}`;  
+  const action = $btn.getAttribute('data-action');
+  const method = $btn.getAttribute('data-method');  
 
   const options = {
     method,
@@ -35,7 +34,7 @@ const fetchData = async ($btn) => {
     }
   }
 
-  const response = await fetch(url, options);
+  const response = await fetch(action, options);
   const data = await response.json();
 
   return handleResponse(data);
