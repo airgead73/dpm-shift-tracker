@@ -76,9 +76,12 @@ exports.detail = asyncHandler(async (req, res, next) => {
   if(!shift) {
     return res
     .status(404)
-    .json({ 
-      success: false, 
-      message: "Shift not found."
+    .render('pages/error', {
+      success: true,
+      title: "Error 404",
+      main: "main--error",
+      message: "Shift could not be found.",
+      status: "404"
     });    
   }
 
