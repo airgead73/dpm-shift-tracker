@@ -45,6 +45,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",
+    "cssnano": "^5.1.5",
+    "del": "^6.0.0",
     "dotenv": "^16.0.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.1",
@@ -55,7 +57,12 @@
   },
   "nodemonConfig": {
     "delay": 2500,
-    "ext": "js,html,ejs,json",
-    "ignore": "app/client/public/*"
+    "ext": "js,json",
+    "ignore": [
+      "app/client/public/*",
+      "app/views/*",
+      "scss/*",
+      "*.ejs"   
+    ]
   }
 }
