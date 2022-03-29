@@ -3,53 +3,50 @@
 
   <% if(fields === "items") { %>
 
-      <form method="PUT" action="/api/shifts/<%= shift.id %>" enctype="application/json" class="form card card--update-active">
-        <div class="card-header bg-dark text-light d-flex justify-content-between">
-          <span><%= shift.date_formatted %></span><span class="badge bg-secondary"><%= shift.items %> items</span>
-        </div>  
-        <div class="card-body row mt-1">
-          <div class="col-md-9">
-            <input type="number" class="form-control" id="items" name="items" placeholder="add items">
-          </div> 
-          <div class="col-md-3">
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-outline-secondary">add</button>
-            </div>          
+    <section class="card card--update-active">
+      <div class="card-header bg-dark text-light d-flex justify-content-between">
+        <span><%= shift.date_formatted %></span><span class="badge bg-secondary"><%= shift.items %> items</span>
+      </div>
+      <form method="PUT" action="/api/shifts/<%= shift.id %>" enctype="application/json" data-form="fetch" class="form card-body row">
+        <div class="col-md-6">
+          <input type="number" class="form-control" id="items" name="items" placeholder="add items">
+        </div> 
+        <div class="col-md-6">
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-secondary">add</button>
           </div>          
-        </div>  
-        </form>
+        </div>        
+      </form> 
+      <form method="PUT" action="/api/shifts/<%= shift.id %>" enctype="application/json" target="/" class="form card-footer">
+        <input type="hidden" id="active" name="active" value="false">
+        <div class="d-grid gap-2 mt-3 mb-3">
+          <button class="btn btn-primary" type="submit">end shift</button>
+        </div>
+      </form> 
+    </section>
            
   <% } else { %> 
 
-    <form action="" class="card card--update" data-form="fetch">
+    <form method="PUT" action="/api/shifts/<%= shift.id %>" enctype="application/json" data-form="fetch" class="form card card--update">
       <h2 class="card-header h4">
         <%= shift.date_formatted %>
       </h2>
-      <article class="row card-body">
-        <aside class="col-md-4">
-          <h3 class="h5">current data</h3>
-          <ul>
-            <li>items: <%= shift.items %></li>
-            <li>hours: <%= shift.hours %></li>
-            <li>rate: <%= shift.rate %></li>
-          </ul>
-          <p>comments: <%= shift.comments %></p>
-        </aside>
-        <fieldset class="col-md-8">
+      
+         <fieldset class="card-body">
           <legend class="h5">update data</legend>
           <section class="row">
             <div class="col-md-6">
-              <input type="number" class="form-control" id="items" name="items" placeholder="enter items">
+              <input type="number" class="form-control" id="items" name="items" value="<%= shift.items %>">
             </div>
             <div class="col-md-6">
-              <input type="number" class="form-control" id="hours" name="hours" placeholder="enter hours">
+              <input type="number" class="form-control" id="hours" name="hours" value="<%= shift.hours %>">
             </div>
             <div class="col-md-12 mt-3">
-              <textarea class="form-control" name="comments" id="comments" rows="3" placeholder="enter comments"></textarea>
+              <textarea class="form-control" name="comments" id="comments" rows="3" value="<%= shift.comments %>"></textarea>
             </div>                                      
           </section>
         </fieldset>
-      </article>
+      
       <footer class="card-footer d-grid gap-2 d-md-flex justify-content-md-end">
         <button class="btn btn-secondary">update shift</button>
       </footer>
