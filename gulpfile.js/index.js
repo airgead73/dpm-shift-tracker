@@ -1,3 +1,4 @@
-const { init: devInit, watch } = require('./development');
+const { init: devInit, watch, js } = require('./development');
 
 exports.dev = watch;
+exports.js = js;
