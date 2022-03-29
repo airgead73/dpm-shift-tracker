@@ -19,12 +19,24 @@ body {
 
 .card--add,
 .card--update,
+.card--update-active,
 .card--detail {
   margin: 0;
   position: absolute;
   width: 98%;
   min-width: 300px;
   max-width: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card--update {
+  margin: 0;
+  position: absolute;
+  width: 98%;
+  min-width: 300px;
+  max-width: 960px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

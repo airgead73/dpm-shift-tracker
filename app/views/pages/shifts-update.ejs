@@ -3,34 +3,60 @@
 
   <% if(fields === "items") { %>
 
-
-    
-  <% }  else { %> 
-
-
-  
-  <% } %>
-
-  <section class="card--update">
-
-    <form method="PUT" action="/api/shifts/<%= shift.id %>" enctype="application/json" class="form card">
-      <div class="card-header bg-dark text-light d-flex justify-content-between">
-        <span><%= shift.date_formatted %></span><span class="badge bg-secondary"><%= shift.items %> items</span>
-      </div>  
-      <div class="card-body row mt-1">
-        <div class="col-md-9">
-          <input type="number" class="form-control" id="items" name="items" placeholder="add items">
-        </div> 
-        <div class="col-md-3">
-          <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-outline-secondary">add</button>
+      <form method="PUT" action="/api/shifts/<%= shift.id %>" enctype="application/json" class="form card card--update-active">
+        <div class="card-header bg-dark text-light d-flex justify-content-between">
+          <span><%= shift.date_formatted %></span><span class="badge bg-secondary"><%= shift.items %> items</span>
+        </div>  
+        <div class="card-body row mt-1">
+          <div class="col-md-9">
+            <input type="number" class="form-control" id="items" name="items" placeholder="add items">
+          </div> 
+          <div class="col-md-3">
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-outline-secondary">add</button>
+            </div>          
           </div>          
-        </div>          
-      </div>  
-      </form>
-      
-  </section>
+        </div>  
+        </form>
+           
+  <% } else { %> 
+
+    <form action="" class="card card--update" data-form="fetch">
+      <h2 class="card-header h4">
+        <%= shift.date_formatted %>
+      </h2>
+      <article class="row card-body">
+        <aside class="col-md-4">
+          <h3 class="h5">current data</h3>
+          <ul>
+            <li>items: <%= shift.items %></li>
+            <li>hours: <%= shift.hours %></li>
+            <li>rate: <%= shift.rate %></li>
+          </ul>
+          <p>comments: <%= shift.comments %></p>
+        </aside>
+        <fieldset class="col-md-8">
+          <legend class="h5">update data</legend>
+          <section class="row">
+            <div class="col-md-6">
+              <input type="number" class="form-control" id="items" name="items" placeholder="enter items">
+            </div>
+            <div class="col-md-6">
+              <input type="number" class="form-control" id="hours" name="hours" placeholder="enter hours">
+            </div>
+            <div class="col-md-12 mt-3">
+              <textarea class="form-control" name="comments" id="comments" rows="3" placeholder="enter comments"></textarea>
+            </div>                                      
+          </section>
+        </fieldset>
+      </article>
+      <footer class="card-footer d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-secondary">update shift</button>
+      </footer>
+    </form>
+
   
+  <% } %>  
     
 
     <%- include('../partials/foot') %>
