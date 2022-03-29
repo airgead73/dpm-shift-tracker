@@ -43,7 +43,7 @@ exports.add = asyncHandler(async (req, res, next) => {
 
 /**
  * @desc Read shifts view
- * @route GET - /dashboard
+ * @route GET - /shifts
  * @access Private
  * */
 
