@@ -27,7 +27,7 @@
            
   <% } else { %> 
 
-    <form method="PUT" action="/api/shifts/<%= shift.id %>" enctype="application/json" data-form="fetch" class="form card card--update">
+    <form method="PUT" action="/api/shifts/<%= shift.id %>" enctype="application/json" data-form="fetch" target="/<%= shift.id %>" class="form card card--update">
       <h2 class="card-header h4">
         <%= shift.date_formatted %>
       </h2>
