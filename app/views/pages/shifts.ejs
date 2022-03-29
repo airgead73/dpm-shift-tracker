@@ -1,41 +1,52 @@
 <%- include ('../partials/head') %>
   <%- include ('../partials/header') %>
 
+  <section class="card">
+    <h2 class="card-header h5">
+      shift dashboard
+    </h2>
+    <article class="card-body">
+      <% if(shifts.length) { %>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <td><a class="btn btn-sm btn-secondary" href="/shifts?sort=date">+</a> <a class="btn btn-sm btn-secondary" href="/shifts?sort=-date">-</a> date</td>
+              <td>items</td>
+              <td>rate</td>
+              <td>comments</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% shifts.forEach(item => { %>
+    
+              <tr id="<%= item.id %>">
+                <td><a href="/<%= item.id %>"><%= item.date_formatted %></a></td>
+                <td><%= item.items %></td>
+                <td><%= item.rate %></td>
+                <td><%= item.comments %></td>
+                <td><a href="/<%= item.id %>/update" class="btn btn-link">update</a>
+                  <button class="btn btn-link btn-fetch" data-confirm="Delete <%= item.date_formatted %>? If yes, click 'ok'." data-action="/api/shifts/<%= item.id %>" data-method="DELETE">delete</button></td>
+              </tr>
+    
+              <% }); %>
+    
+          </tbody>
+        </table>      
+  
+     <% } else { %>
+  
+      <p>no shifts</p>
+  
+    <% } %>
+    </article>
+    <footer class="card-footer"></footer>
+  </section>
+
     <h2>shift dashboard</h2>
 
-    <% if(shifts.length) { %>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <td><a class="btn btn-sm btn-secondary" href="/shifts?sort=date">+</a> <a class="btn btn-sm btn-secondary" href="/shifts?sort=-date">-</a> date</td>
-            <td>items</td>
-            <td>rate</td>
-            <td>comments</td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          <% shifts.forEach(item => { %>
-  
-            <tr id="<%= item.id %>">
-              <td><a href="/<%= item.id %>"><%= item.date_formatted %></a></td>
-              <td><%= item.items %></td>
-              <td><%= item.rate %></td>
-              <td><%= item.comments %></td>
-              <td><button class="btn btn-link btn-fetch" data-confirm="Delete <%= item.date_formatted %>? If yes, click 'ok'." data-action="/api/shifts/<%= item.id %>" data-method="DELETE">delete</button></td>
-            </tr>
-  
-            <% }); %>
-  
-        </tbody>
-      </table>      
-
-   <% } else { %>
-
-    <p>no shifts</p>
-
-  <% } %>
 
 
 <%- include('../partials/foot') %>
