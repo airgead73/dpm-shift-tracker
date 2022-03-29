@@ -49,11 +49,15 @@
     "del": "^6.0.0",
     "dotenv": "^16.0.0",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-mode": "^1.1.0",
     "gulp-postcss": "^9.0.1",
     "gulp-sass": "^5.1.0",
     "nodemon": "^2.0.15",
     "open": "^8.4.0",
-    "sass": "^1.49.9"
+    "sass": "^1.49.9",
+    "uglify": "^0.1.5",
+    "webpack-stream": "^7.0.0"
   },
   "nodemonConfig": {
     "delay": 2500,
@@ -62,7 +66,7 @@
       "app/client/public/*",
       "app/views/*",
       "scss/*",
-      "*.ejs"   
+      "*.ejs"
     ]
   }
 }

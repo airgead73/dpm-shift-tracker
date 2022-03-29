@@ -9,7 +9,7 @@ function clean() {
   return del(['./app/public/main.css', './app/public/main.css.map'])
 }
 
-function dev() {
+function css() {
   return src('./scss/main.scss', { sourcemaps: true})
     .pipe(sass())
     .pipe(postcss([ autoprefixer(), cssnano() ]))
@@ -17,16 +17,16 @@ function dev() {
 }
 
 function watchCSS() {
-  watch(['./scss'], series(
+  watch(['./gulp/scss'], { delay: 500 }, { ignoreInitial: false}, series(
     clean,
-    dev
+    css
   ))
 }
 
 function init(cb) {
-  series(clean, dev);
+  series(clean, css);
   cb();
 }
 
 exports.init = init;
-exports.watch = watchCSS
+exports.watch = watchCSS;
