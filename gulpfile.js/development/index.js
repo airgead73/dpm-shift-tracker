@@ -1,4 +1,4 @@
-const { src, dest, series } = require('gulp');
+const { src, dest, series, watch } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -16,11 +16,11 @@ function dev() {
     .pipe(dest('./app/public', { sourcemaps: '.' }))
 }
 
-function build() {
-  return src('./scss/main.scss', { sourcemaps: true})
-    .pipe(sass())
-    .pipe(postcss([ autoprefixer() ]))
-    .pipe(dest('./app/public', { sourcemaps: '.' }))
+function watchCSS() {
+  watch(['./scss'], series(
+    clean,
+    dev
+  ))
 }
 
 function init(cb) {
@@ -29,3 +29,4 @@ function init(cb) {
 }
 
 exports.init = init;
+exports.watch = watchCSS
