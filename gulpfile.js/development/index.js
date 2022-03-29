@@ -23,10 +23,9 @@ function build() {
     .pipe(dest('./app/public', { sourcemaps: '.' }))
 }
 
-exports.dev = dev;
-exports.build = build;
-exports.clean = clean;
+function init(cb) {
+  series(clean, dev);
+  cb();
+}
 
-
-
-exports.default = dev;
+exports.init = init;
