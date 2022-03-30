@@ -4,9 +4,9 @@ const clean = require('./clean');
 const { styles } = require('./variables')
 const { watch: WATCH } = styles;
 
-function watch(cb) {
+function watchTasks(cb) {
   watch(WATCH, { ignoreInitial: false, delay: 500 }, series(clean, scss))
   cb()
 }
 
-module.exports = watch;
+module.exports = watchTasks;

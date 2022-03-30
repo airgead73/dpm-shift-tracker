@@ -59,6 +59,7 @@ app.set('view engine', 'ejs');
  */
 
  app.use(function (req, res, next) {
+  res.locals.isDevelopment = process.env.NODE_ENV === "development";
   res.locals.isAuthenticated = req.oidc.isAuthenticated();
   next();
 })

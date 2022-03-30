@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "local": "NODE_ENV=development nodemon -r dotenv/config index.js",
-    "deploy": "git push heroku v10:main"
+    "watch-server": "NODE_ENV=development nodemon -r dotenv/config index.js",
+    "watch-public": "gulp dev",
+    "watch": "concurrently \"npm:watch-public\" \"npm:watch-server\"",
+    "deploy": "git push heroku v10:main",
+    "build": "gulp build",
+    "heroku-postbuild": "echo Skip builds on Heroku"
   },
   "repository": {
     "type": "git",
@@ -55,6 +59,8 @@
   },
   "devDependencies": {
     "bootstrap": "^5.1.3",
+    "bootswatch": "^5.1.3",
+    "concurrently": "^7.0.0",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",

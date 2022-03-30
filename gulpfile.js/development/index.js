@@ -1,4 +1,4 @@
-const watch = require('./watch');
+const watchTasks = require('./watch');
 
-exports.init = watch;
+exports.init = watchTasks;
   
