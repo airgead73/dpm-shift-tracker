@@ -1,5 +1,17 @@
-$color: green;
+$color1: blue;
+$color2: red;
 
 h1 {
-  color: $color;
+  color: $color1;
+}
+
+h2 {
+  color: $color2;
+}
+
+.main {
+  background-color: $color1;
+  & .aside {
+    background-color: $color2;
+  }
 }

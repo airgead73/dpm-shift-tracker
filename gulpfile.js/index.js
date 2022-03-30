@@ -1,3 +1,5 @@
-const { init } = require('./development');
+const { init: dev } = require('./development');
+const { init: build } = require('./production');
 
-exports.default = init;
+exports.dev = dev;
+exports.build = build;

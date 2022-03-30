@@ -23,7 +23,7 @@ function scss() {
     .pipe(autoprefixer({
       overrideBrowserslist: ['> 1%']
     }))
-    //.pipe(cssnano())
+    .pipe(cssnano())
     .pipe(rename(RENAME))
     .pipe(mode.development(sourcemaps.write()))
     .pipe(dest(DEST));
