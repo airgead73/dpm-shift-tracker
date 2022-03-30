@@ -6,4 +6,6 @@ const styles = {
   watch: ['assets/scss/**/*.scss']
 }
 
-module.exports = styles;
+module.exports = {
+  styles
+};

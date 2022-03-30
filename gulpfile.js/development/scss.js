@@ -1,5 +1,4 @@
 const { src, dest } = require('gulp');
-const cssnano = require('gulp-cssnano');
 const autoprefixer = require('gulp-autoprefixer');
 const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
@@ -12,7 +11,8 @@ const mode = require('gulp-mode')({
 
 /* variables */
 
-const { src: SRC, rename: RENAME, dest: DEST } = require('./variables');
+const { styles } = require('./variables');
+const { src: SRC, rename: RENAME, dest: DEST } = styles;
 
 /* tasks */
 
@@ -23,7 +23,6 @@ function scss() {
     .pipe(autoprefixer({
       overrideBrowserslist: ['> 1%']
     }))
-    //.pipe(cssnano())
     .pipe(rename(RENAME))
     .pipe(mode.development(sourcemaps.write()))
     .pipe(dest(DEST));

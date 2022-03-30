@@ -1,5 +1,6 @@
 const del = require('del');
-const { arr: ARR } = require('./variables');
+const { styles } = require('./variables');
+const { arr: ARR } = styles;
 
 function clean() {
   return del(ARR)

@@ -11,21 +11,21 @@ const mode = require('gulp-mode')({
 });
 
 /* variables */
-
-const { src: SRC, rename: RENAME, dest: DEST } = require('./variables');
+const { styles } = require('./variables');
+const { src: SRC, rename: RENAME, dest: DEST } = styles;
 
 /* tasks */
 
 function scss() {
   return src(SRC)
-    .pipe(mode.development(sourcemaps.init()))
+    .pipe(mode.production(sourcemaps.init()))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       overrideBrowserslist: ['> 1%']
     }))
     .pipe(cssnano())
     .pipe(rename(RENAME))
-    .pipe(mode.development(sourcemaps.write()))
+    .pipe(mode.production(sourcemaps.write()))
     .pipe(dest(DEST));
 }
 

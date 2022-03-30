@@ -5,4 +5,6 @@ const styles = {
   arr: ['app/public/main.css', 'app/public/main.min.css']
 }
 
-module.exports = styles;
+module.exports = {
+  styles
+};
