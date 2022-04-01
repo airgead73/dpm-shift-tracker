@@ -31,12 +31,15 @@ const Shift = require('../units-api/shift');
 
 exports.add = asyncHandler(async (req, res, next) => {
 
+  const { isDevelopment } = res.locals;
+
   return res
     .status(200)
     .render('pages/shifts-add', {
       success: true,
       title: "add shift",
-      main: "main--add"
+      main: "main--add",
+      isDevelopment
     });
 
 });
@@ -51,6 +54,9 @@ exports.dashboard = asyncHandler(async (req, res, next) => {
 
   const { success, count, data: shifts } = res.results;
 
+  const { isDevelopment } = res.locals;
+
+
   return res
     .status(200)
     .render('pages/shifts', {
@@ -58,7 +64,8 @@ exports.dashboard = asyncHandler(async (req, res, next) => {
       count,
       shifts,
       title: "Shifts",
-      main: "main--shifts"
+      main: "main--shifts",
+      isDevelopment
     });
 
 });
@@ -80,13 +87,16 @@ exports.detail = asyncHandler(async (req, res, next) => {
    throw error;
   }
 
+  const { isDevelopment } = res.locals;
+
   return res
     .status(200)
     .render('pages/shifts-detail', {
       success: true,
       shift: shift,
       title: `${shift.date_formatted}`,
-      main: "main--detail"
+      main: "main--detail",
+      isDevelopment
     });
 
 });
@@ -110,6 +120,8 @@ exports.update = asyncHandler(async (req, res, next) => {
   
   const { fields } = req.query;
 
+  const { isDevelopment } = res.locals;
+
   return res
     .status(200)
     .render('pages/shifts-update', {
@@ -117,7 +129,8 @@ exports.update = asyncHandler(async (req, res, next) => {
       shift: shift,
       title: `Update ${shift.date_formatted}`,
       main: "main--update",
-      fields
+      fields,
+      isDevelopment
     });
 
 

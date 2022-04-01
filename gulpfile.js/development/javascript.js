@@ -8,8 +8,10 @@ const { src: SRC, rename: RENAME, dest: DEST } = scripts;
 
 function javascript() {
   return src(SRC)
-    .pipe(babel())
+    .pipe(sourcemaps.init())
+    .pipe(babel({ presets: ['@babel/preset-env']}))
     .pipe(concat(RENAME))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(DEST))
 }
 

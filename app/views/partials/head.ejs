@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% if(isDevelopment) { %>
-    <link rel="stylesheet" href="/main.min.css" type="text/css">
+    <link rel="stylesheet" href="/main.css" type="text/css">
     <script src="/bundle.js" defer></script>
   <% } else { %>
     <link rel="stylesheet" href="/main.min.css" type="text/css">
-    <script type="module" src="/bundle.js" defer></script>
+    <script type="module" src="/bundle.min.js" defer></script>
   <% } %>  
   
   <title><%= typeof title !='undefined' ? title : 'Page Title' %></title>
