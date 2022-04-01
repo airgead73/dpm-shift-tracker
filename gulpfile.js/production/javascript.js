@@ -2,11 +2,15 @@ const { src, dest } = require('gulp');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 
+/* variables */
+const { scripts } = require('./variables');
+const { src: SRC, rename: RENAME, dest: DEST } = scripts;
+
 function javascript() {
-  return src(['assets/scripts/bootstrap.bundle.js', 'assets/scripts/forms.js', 'assets/scripts/btns.js'])
+  return src(SRC)
     .pipe(babel())
-    .pipe(concat("bundle.js"))
-    .pipe(dest('app/public'))
+    .pipe(concat(RENAME))
+    .pipe(dest(DEST))
 }
 
 module.exports = javascript;

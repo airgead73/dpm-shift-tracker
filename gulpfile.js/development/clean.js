@@ -1,6 +1,6 @@
 const del = require('del');
-const { styles } = require('./variables');
-const { arr: ARR } = styles;
+const { styles, scripts } = require('./variables');
+const ARR = (styles.arr).concat(scripts.arr);
 
 function clean() {
   return del(ARR)
