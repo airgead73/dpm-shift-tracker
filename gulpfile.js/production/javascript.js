@@ -8,6 +8,7 @@ const uglify = require('gulp-uglify');
 const { scripts } = require('./variables');
 const { src: SRC, rename: RENAME, dest: DEST } = scripts;
 
+/* tasks */
 function javascript() {
   return src(SRC)
     .pipe(sourcemaps.init())
