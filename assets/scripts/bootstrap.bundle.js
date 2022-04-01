@@ -4,16 +4,17 @@
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory());
-})(this, function () {
-  'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory());
+})(this, (function () { 'use strict';
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): util/index.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   const MAX_UID = 1000000;
   const MILLISECONDS_MULTIPLIER = 1000;
   const TRANSITION_END = 'transitionend'; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
@@ -318,19 +319,18 @@
 
     return list[Math.max(0, Math.min(index, listLength - 1))];
   };
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): dom/event-handler.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
    */
-
 
   const namespaceRegex = /[^.]*(?=\..*)\.|.*/;
   const stripNameRegex = /\..*/;
@@ -607,6 +607,7 @@
     }
 
   };
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): dom/data.js
@@ -619,7 +620,6 @@
    * Constants
    * ------------------------------------------------------------------------
    */
-
   const elementMap = new Map();
   const Data = {
     set(element, key, instance) {
@@ -661,13 +661,13 @@
     }
 
   };
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): base-component.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -727,13 +727,13 @@
     }
 
   }
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): util/component-functions.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
 
   const enableDismissTrigger = (component, method = 'hide') => {
     const clickEvent = `click.dismiss${component.EVENT_KEY}`;
@@ -753,19 +753,18 @@
       instance[method]();
     });
   };
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): alert.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
    */
-
 
   const NAME$d = 'alert';
   const DATA_KEY$c = 'bs.alert';
@@ -843,13 +842,13 @@
    */
 
   defineJQueryPlugin(Alert);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): button.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -914,13 +913,13 @@
    */
 
   defineJQueryPlugin(Button);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): dom/manipulator.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   function normalizeData(val) {
     if (val === 'true') {
       return true;
@@ -988,13 +987,13 @@
     }
 
   };
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): dom/selector-engine.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   const NODE_TEXT = 3;
   const SelectorEngine = {
     find(selector, element = document.documentElement) {
@@ -1058,13 +1057,13 @@
     }
 
   };
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): carousel.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -1607,13 +1606,13 @@
    */
 
   defineJQueryPlugin(Carousel);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): collapse.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -1926,6 +1925,7 @@
    */
 
   defineJQueryPlugin(Collapse);
+
   var top = 'top';
   var bottom = 'bottom';
   var right = 'right';
@@ -1993,8 +1993,9 @@
 
     var OwnElement = getWindow(node).ShadowRoot;
     return node instanceof OwnElement || node instanceof ShadowRoot;
-  } // and applies them to the HTMLElements such as popper and arrow
+  }
 
+  // and applies them to the HTMLElements such as popper and arrow
 
   function applyStyles(_ref) {
     var state = _ref.state;
@@ -2079,11 +2080,12 @@
 
   function getBasePlacement(placement) {
     return placement.split('-')[0];
-  } // import { isHTMLElement } from './instanceOf';
+  }
 
-
+  // import { isHTMLElement } from './instanceOf';
   function getBoundingClientRect(element, // eslint-disable-next-line unused-imports/no-unused-vars
   includeScale) {
+
     var rect = element.getBoundingClientRect();
     var scaleX = 1;
     var scaleY = 1; // FIXME:
@@ -2114,8 +2116,9 @@
       x: rect.left / scaleX,
       y: rect.top / scaleY
     };
-  } // means it doesn't take into account transforms.
+  }
 
+  // means it doesn't take into account transforms.
 
   function getLayoutRect(element) {
     var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
@@ -2147,17 +2150,17 @@
       return true;
     } // then fallback to custom implementation with Shadow DOM support
     else if (rootNode && isShadowRoot(rootNode)) {
-      var next = child;
+        var next = child;
 
-      do {
-        if (next && parent.isSameNode(next)) {
-          return true;
-        } // $FlowFixMe[prop-missing]: need a better way to handle this...
+        do {
+          if (next && parent.isSameNode(next)) {
+            return true;
+          } // $FlowFixMe[prop-missing]: need a better way to handle this...
 
 
-        next = next.parentNode || next.host;
-      } while (next);
-    } // Give up, the result is false
+          next = next.parentNode || next.host;
+        } while (next);
+      } // Give up, the result is false
 
 
     return false;
@@ -2348,6 +2351,7 @@
     }
 
     if (!contains(state.elements.popper, arrowElement)) {
+
       return;
     }
 
@@ -2468,6 +2472,7 @@
         adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
         _options$roundOffsets = options.roundOffsets,
         roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
+
     var commonStyles = {
       placement: getBasePlacement(state.placement),
       variation: getVariation(state.placement),
@@ -2507,6 +2512,7 @@
     fn: computeStyles,
     data: {}
   };
+
   var passive = {
     passive: true
   };
@@ -2554,13 +2560,13 @@
     effect: effect,
     data: {}
   };
+
   var hash$1 = {
     left: 'right',
     right: 'left',
     bottom: 'top',
     top: 'bottom'
   };
-
   function getOppositePlacement(placement) {
     return placement.replace(/left|right|bottom|top/g, function (matched) {
       return hash$1[matched];
@@ -2571,7 +2577,6 @@
     start: 'end',
     end: 'start'
   };
-
   function getOppositeVariationPlacement(placement) {
     return placement.replace(/start|end/g, function (matched) {
       return hash[matched];
@@ -2635,8 +2640,9 @@
       x: x + getWindowScrollBarX(element),
       y: y
     };
-  } // of the `<html>` and `<body>` rect bounds if horizontally scrollable
+  }
 
+  // of the `<html>` and `<body>` rect bounds if horizontally scrollable
 
   function getDocumentRect(element) {
     var _element$ownerDocumen;
@@ -2683,13 +2689,13 @@
 
     return getScrollParent(getParentNode(node));
   }
+
   /*
   given a DOM element, return the list of all scroll parents, up the list of ancesors
   until we get to the top window object. This list is what we attach scroll listeners
   to, because if any of these parent elements scroll, we'll need to re-calculate the
   reference element's position.
   */
-
 
   function listScrollParents(element, list) {
     var _element$ownerDocumen;
@@ -3184,11 +3190,11 @@
 
   function popperOffsets(_ref) {
     var state = _ref.state,
-        name = _ref.name; // Offsets are the actual position the popper needs to have to be
+        name = _ref.name;
+    // Offsets are the actual position the popper needs to have to be
     // properly positioned near its reference element
     // This is the most basic placement, and will be adjusted by
     // the modifiers in the next step
-
     state.modifiersData[name] = computeOffsets({
       reference: state.rects.reference,
       element: state.rects.popper,
@@ -3543,6 +3549,7 @@
           // anymore
 
           if (!areValidElements(reference, popper)) {
+
             return;
           } // Store the reference and popper rects to be read by modifiers
 
@@ -3567,6 +3574,7 @@
           });
 
           for (var index = 0; index < state.orderedModifiers.length; index++) {
+
             if (state.reset === true) {
               state.reset = false;
               index = -1;
@@ -3604,6 +3612,7 @@
       };
 
       if (!areValidElements(reference, popper)) {
+
         return instance;
       }
 
@@ -3649,7 +3658,6 @@
       return instance;
     };
   }
-
   var createPopper$2 = /*#__PURE__*/popperGenerator(); // eslint-disable-next-line import/no-unused-modules
 
   var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
@@ -3703,13 +3711,13 @@
     popperOffsets: popperOffsets$1,
     preventOverflow: preventOverflow$1
   });
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): dropdown.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -4165,13 +4173,13 @@
    */
 
   defineJQueryPlugin(Dropdown);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): util/scrollBar.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
   const SELECTOR_STICKY_CONTENT = '.sticky-top';
 
@@ -4269,14 +4277,13 @@
     }
 
   }
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): util/backdrop.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
-
   const Default$7 = {
     className: 'modal-backdrop',
     isVisible: true,
@@ -4394,14 +4401,13 @@
     }
 
   }
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): util/focustrap.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
-
   const Default$6 = {
     trapElement: null,
     // The element to trap focus inside of
@@ -4498,19 +4504,18 @@
     }
 
   }
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): modal.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
    */
-
 
   const NAME$6 = 'modal';
   const DATA_KEY$6 = 'bs.modal';
@@ -4928,13 +4933,13 @@
    */
 
   defineJQueryPlugin(Modal);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): offcanvas.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -5184,13 +5189,13 @@
    */
 
   defineJQueryPlugin(Offcanvas);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): util/sanitizer.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
   const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
   /**
@@ -5263,7 +5268,6 @@
     u: [],
     ul: []
   };
-
   function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
     if (!unsafeHtml.length) {
       return unsafeHtml;
@@ -5297,19 +5301,18 @@
 
     return createdDocument.body.innerHTML;
   }
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): tooltip.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
    */
-
 
   const NAME$4 = 'tooltip';
   const DATA_KEY$4 = 'bs.tooltip';
@@ -6008,13 +6011,13 @@
 
 
   defineJQueryPlugin(Tooltip);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): popover.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -6118,13 +6121,13 @@
 
 
   defineJQueryPlugin(Popover);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): scrollspy.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -6353,13 +6356,13 @@
    */
 
   defineJQueryPlugin(ScrollSpy);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): tab.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -6551,13 +6554,13 @@
    */
 
   defineJQueryPlugin(Tab);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): toast.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -6781,13 +6784,13 @@
    */
 
   defineJQueryPlugin(Toast);
+
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.1.3): index.umd.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
-
   const index_umd = {
     Alert,
     Button,
@@ -6802,133 +6805,8 @@
     Toast,
     Tooltip
   };
+
   return index_umd;
-});
-(function () {
-  const forms = Array.from(document.querySelectorAll('.form'));
 
-  const handleResponse = $data => {
-    const {
-      success,
-      message,
-      relocateTo
-    } = $data;
-    alert(message);
-
-    if (relocateTo) {
-      window.location.replace(relocateTo);
-    } else {
-      window.location.reload();
-    }
-  };
-
-  const fetchData = async $form => {
-    const attrs = $form.getAttributeNames().reduce((acc, name) => {
-      return { ...acc,
-        [name]: $form.getAttribute(name)
-      };
-    }, {});
-    const options = {
-      method: attrs.method,
-      headers: {
-        'Content-Type': attrs.enctype,
-        'Accept': attrs.enctype
-      }
-    };
-    const needsBody = attrs.method === 'POST' || attrs.method === 'PUT';
-
-    if (needsBody) {
-      let body = {};
-      let formElements = Array.from($form.elements);
-      formElements = formElements.filter(element => {
-        if (element.hasAttribute('name')) {
-          return element;
-        }
-      });
-      formElements.forEach(element => {
-        const property = element.getAttribute('name');
-        const value = $form[property].value;
-        body[property] = value;
-      });
-      options.body = JSON.stringify(body);
-    }
-
-    const response = await fetch(attrs.action, options);
-    const data = await response.json();
-    data.relocateTo = $form.getAttribute('target') || false;
-    return data;
-  };
-
-  const initForms = $forms => {
-    $forms.forEach(form => {
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        fetchData(event.target).then(data => handleResponse(data));
-      });
-    });
-  };
-
-  if (forms.length) {
-    initForms(forms);
-  } else {
-    return;
-  }
-})();
-(function () {
-  const btns = Array.from(document.querySelectorAll('.btn-fetch'));
-
-  const confirmFetch = ($confirmMessage = false) => {
-    let isConfirmed = true;
-    if ($confirmMessage) isConfirmed = confirm($confirmMessage);
-    return isConfirmed;
-  };
-
-  const handleResponse = $data => {
-    const {
-      success,
-      message,
-      relocateTo
-    } = $data;
-    alert(message);
-
-    if (relocateTo) {
-      window.location.replace(relocateTo);
-    } else {
-      window.location.reload();
-    }
-  };
-
-  const fetchData = async $btn => {
-    // confirm
-    const isConfirmed = confirmFetch($btn.getAttribute('data-confirm'));
-    if (!isConfirmed) return; // if confirmed, continue
-
-    const action = $btn.getAttribute('data-action');
-    const method = $btn.getAttribute('data-method');
-    const options = {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    };
-    const response = await fetch(action, options);
-    const data = await response.json();
-    return handleResponse(data);
-  };
-
-  const initBtns = $btns => {
-    $btns.forEach(btn => {
-      btn.addEventListener('click', event => {
-        event.preventDefault();
-        fetchData(event.target);
-      });
-    });
-  };
-
-  if (btns.length) {
-    initBtns(btns);
-  } else {
-    return;
-  }
-})();
+}));
+//# sourceMappingURL=bootstrap.bundle.js.map
