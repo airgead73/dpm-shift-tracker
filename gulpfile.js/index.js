@@ -1,9 +1,6 @@
-const { init: dev } = require('./development');
-const { init: build } = require('./production');
-const clean = require('./production/clean');
-const js = require('./development/javascript');
+const scss = require('./scss');
+const js = require('./js')
+const clean = require('./clean')
 
-exports.dev = dev;
+exports.scss = scss;
 exports.clean = clean;
-exports.build = build;
-exports.js = js;
