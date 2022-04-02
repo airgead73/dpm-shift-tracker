@@ -29,6 +29,11 @@
     "url": "https://github.com/airgead73/dpm-shift-tracker/issues"
   },
   "homepage": "https://github.com/airgead73/dpm-shift-tracker#readme",
+  "browserslist": [
+    ">0.2%",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
