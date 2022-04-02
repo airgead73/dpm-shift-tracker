@@ -4,7 +4,7 @@ const policies = {
     "img-src": ["'self'", "*.cloudinary.com", "data:"],
     "font-src": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com"],
     "style-src-elem": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com"],
-    "style-src": ["'self'"],
+    "style-src": ["'self'", "'unsafe-inline'"],
     "script-src-elem": ["'self'", "https://cdn.jsdelivr.net"],
     "script-src": ["'self'", "https://cdn.jsdelivr.net"]
   }

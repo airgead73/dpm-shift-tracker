@@ -12,7 +12,7 @@ const { src: SRC, rename: RENAME, dest: DEST } = scripts;
 function javascript() {
   return src(SRC)
     .pipe(sourcemaps.init())
-    .pipe(babel({ presets: ['@babel/preset-env']}))
+    .pipe(babel({ presets: ['@babel/preset-env'], plugins: [['@babel/transform-runtime']]}))
     .pipe(concat(RENAME))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
