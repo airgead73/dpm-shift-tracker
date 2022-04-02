@@ -1,8 +1,11 @@
 const del = require('del');
 
-const scssArr = ['app/public/main.css', 'app/public/main.css.map'];
-const jsArr = ['app/public/bundle.js', 'app/public/bundle.js.map'];
-const toDelete = scssArr.concat(jsArr);
+/* variables */
+const { styles, scripts } = require('./variables');
+const { CLEAN: CLEANJS } = scripts;
+const { CLEAN: CLEANSCSS} = styles;
+
+const toDelete = CLEANSCSS.concat(CLEANJS);
 
 function clean() {
   return del(toDelete);

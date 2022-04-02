@@ -1,23 +1,20 @@
 const { series, watch } = require('gulp');
 const scss = require('./scss');
-const { jsConcat, jsBrowserify, jsBabel, jsClean } = require('./js');
+const { jsConcat, jsBrowserify, jsBabel, jsReset } = require('./js');
 const clean = require('./clean');
 
+/* variables */
+const { watch: WATCH } = require('./variables');
+
 function watchTasks() {
-  watch([
-    'assets/scss/index.scss',
-    'assets/scripts/bootstrap.bundle.js',
-    'assets/scripts/forms.js',
-    'assets/scripts/btns.js',
-    'assets/scripts/camelcase.js'
-  ], { ignoreInitial: false }, 
+  watch(WATCH.SRC, { ignoreInitial: false }, 
   series(
     clean,
     scss,
     jsConcat, 
     jsBrowserify,
     jsBabel,
-    jsClean
+    jsReset
   ));
 }
 
