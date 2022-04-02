@@ -8,8 +8,8 @@
     "watch-server": "NODE_ENV=development nodemon -r dotenv/config index.js",
     "watch-public": "gulp dev",
     "watch": "concurrently \"npm:watch-public\" \"npm:watch-server\"",
-    "deploy": "git push heroku v14:main",
-    "build": "gulp build",
+    "deploy": "git push heroku v1:main",
+    "build": "gulp",
     "heroku-postbuild": "echo Skip builds on Heroku"
   },
   "repository": {
