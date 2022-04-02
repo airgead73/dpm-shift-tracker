@@ -8,7 +8,7 @@ function scss() {
   return src('assets/scss/index.scss', { sourcemaps: true })
     .pipe(sass())
     .pipe(postcss([autoprefixer]))
-    .pipe(rename('main.css'))
+    .pipe(rename('main.min.css'))
     .pipe(dest('app/public', { sourcemaps: '.'}))
 }
 

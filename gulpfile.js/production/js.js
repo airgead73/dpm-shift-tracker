@@ -31,7 +31,7 @@ function jsBabel() {
   return src('assets/scripts/browser.js')
     .pipe(babel({ presets:['@babel/preset-env'], plugins: [['@babel/plugin-transform-runtime']]}))
     .pipe(uglify())
-    .pipe(rename('bundle.js'))
+    .pipe(rename('bundle.min.js'))
     .pipe(dest('app/public'));
 }
 
