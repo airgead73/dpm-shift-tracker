@@ -1,6 +1,5 @@
-const scss = require('./scss');
-const js = require('./js')
-const clean = require('./clean')
+const { dev } = require('./development');
+const { build } = require('./production');
 
-exports.scss = scss;
-exports.clean = clean;
+exports.dev = dev;
+exports.default = build;
