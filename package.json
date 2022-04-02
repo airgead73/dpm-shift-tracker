@@ -8,7 +8,7 @@
     "watch-server": "NODE_ENV=development nodemon -r dotenv/config index.js",
     "watch-public": "gulp dev",
     "watch": "concurrently \"npm:watch-public\" \"npm:watch-server\"",
-    "deploy": "git push heroku v13:main",
+    "deploy": "git push heroku v14:main",
     "build": "gulp build",
     "heroku-postbuild": "echo Skip builds on Heroku"
   },
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/airgead73/dpm-shift-tracker#readme",
   "browserslist": [
-    ">0.2%",
+    ">1%",
     "not ie <= 11",
     "not op_mini all"
   ],
